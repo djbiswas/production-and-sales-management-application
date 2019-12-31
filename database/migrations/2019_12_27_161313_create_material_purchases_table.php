@@ -15,6 +15,22 @@ class CreateMaterialPurchasesTable extends Migration
     {
         Schema::create('material_purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->unsignedBigInteger('product_model_id');
+            $table->unsignedBigInteger('supplier_id');
+            $table->string('currency');
+            $table->decimal('total', 25, 4);
+            $table->decimal('total_bdt', 25, 4);
+            $table->decimal('quantity', 25, 4);
+            $table->decimal('unit_price', 25, 4);
+            $table->decimal('sell_price', 25, 4);
+
+            $table->foreign('product_model_id')->references('id')
+                ->on('product_models')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('supplier_id')->references('id')
+                ->on('suppliers')->onUpdate('cascade')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

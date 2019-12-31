@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\MaterialPurchase;
+use App\ProductModel;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class MaterialPurchaseController extends Controller
@@ -24,7 +26,10 @@ class MaterialPurchaseController extends Controller
      */
     public function create()
     {
-        return view('purchases.create');
+        $products = ProductModel::pluck('product_model_name', 'id');
+        $suppliers = Supplier::pluck('name', 'id');
+        return view('purchases.create')->with(compact('products','suppliers'));
+
     }
 
     /**
