@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a821abd-2ce1-4ed1-b0c9-df0f0308dc69" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/currencies/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/currencies/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/currencies/view.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/purchases/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/purchases/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/purchases/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/purchases/view.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/suppliers/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaterialPurchaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaterialPurchaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
