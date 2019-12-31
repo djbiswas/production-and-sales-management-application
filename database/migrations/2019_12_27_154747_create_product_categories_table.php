@@ -21,16 +21,16 @@ class CreateProductCategoriesTable extends Migration
         });
 
            // product_model  //product_category_product_model
-        Schema::create('product_category_product_model', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_category_id');
-            $table->unsignedBigInteger('product_model_id');
-            $table->foreign('product_category_id')
+        Schema::create('product_model', function (Blueprint $table) {
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('model_id');
+            $table->foreign('category_id')
                 ->references('id')->on('product_categories')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('product_model_id')
+            $table->foreign('model_id')
                 ->references('id')->on('product_models')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->unique(['product_category_id','product_model_id']);
+            $table->unique(['category_id','model_id']);
             $table->timestamps();
         });
     }

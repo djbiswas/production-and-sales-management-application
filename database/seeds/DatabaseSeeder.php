@@ -14,12 +14,13 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call(StockUnitSeeder::class);
         $this->call(StockItemGroupSeeder::class);
-        $this->call(StockItemClassSeeder::class);
         $this->call(StockItemTypeSeeder::class);
         $this->call(TaxCategorySeeder::class);
         $this->call(ProductTypeSeeder::class);
         $this->call(ProductModelSeeder::class);
         $this->call(ProductCategorySeeder::class);
+        $this->call(CostPricingPolicySeeder::class);
+        $this->call(SalePricingPolicySeeder::class);
 
 
     }
