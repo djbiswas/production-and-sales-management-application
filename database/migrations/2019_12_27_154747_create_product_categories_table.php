@@ -30,7 +30,7 @@ class CreateProductCategoriesTable extends Migration
             $table->foreign('product_model_id')
                 ->references('id')->on('product_models')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->unique(['product_category_id','product_model_id']);
+//            $table->unique(['product_category_id','product_model_id']);
             $table->timestamps();
         });
     }

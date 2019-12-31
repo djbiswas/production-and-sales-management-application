@@ -15,7 +15,7 @@ class CreateProductModelsTable extends Migration
     {
         Schema::create('product_models', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_category_id');
+            $table->unsignedBigInteger('product_type_id');
             $table->string('product_model_name');
             $table->string('model_description')->nullable();
             $table->foreign('product_type_id')->references('id')
