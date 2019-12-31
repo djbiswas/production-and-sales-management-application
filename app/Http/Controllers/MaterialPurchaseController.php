@@ -14,7 +14,7 @@ class MaterialPurchaseController extends Controller
      */
     public function index()
     {
-        //
+        return view('purchases.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MaterialPurchaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('purchases.add');
     }
 
     /**
@@ -46,7 +46,7 @@ class MaterialPurchaseController extends Controller
      */
     public function show(MaterialPurchase $materialPurchase)
     {
-        //
+        return view('purchases.view');
     }
 
     /**
@@ -57,7 +57,7 @@ class MaterialPurchaseController extends Controller
      */
     public function edit(MaterialPurchase $materialPurchase)
     {
-        //
+        return view('purchases.edit');
     }
 
     /**
