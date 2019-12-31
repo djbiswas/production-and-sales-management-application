@@ -17,6 +17,7 @@ class StockUnitSeeder extends Seeder
             ['unit_name' => 'PCS'],
             ['unit_name' => 'KG'],
             ['unit_name' => 'TON'],
+            ['unit_name' => 'BAG'],
         ];
 
        foreach ($stockUnits as $stockUnit){

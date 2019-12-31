@@ -13,7 +13,12 @@ class ProductTypeSeeder extends Seeder
     {
         $productTypes = [
             ['product_type_name' => 'tiles'],
-            ['product_type_name' => 'Ceramic']
+            ['product_type_name' => 'Ceramic'],
+            ['product_type_name' => 'Stone'],
+            ['product_type_name' => 'Sand'],
+            ['product_type_name' => 'Dyes'],
+            ['product_type_name' => 'Chemical'],
+            ['product_type_name' => 'Other']
         ];
         foreach ($productTypes as $productType){
 

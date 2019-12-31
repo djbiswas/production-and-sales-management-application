@@ -15,6 +15,7 @@ class StockItemGroupSeeder extends Seeder
           ['group_name' => 'Raw Materials'],
           ['group_name' => 'Work-in-process'],
           ['group_name' => 'Finished Goods'],
+          ['group_name' => 'Waste Goods'],
 
         ];
         foreach ($stockGroups as $stockGroup){

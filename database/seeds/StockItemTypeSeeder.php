@@ -12,7 +12,8 @@ class StockItemTypeSeeder extends Seeder
     public function run()
     {
         $stockItemTypes = [
-            ['stock_type_name' => 'Stock-N-Sell']
+            ['stock_type_name' => 'Stock-N-Sell'],
+            ['stock_type_name' => 'Stock-Only'],
         ];
 
         foreach ($stockItemTypes as $stockItemType){

@@ -24,7 +24,7 @@ class MaterialPurchaseController extends Controller
      */
     public function create()
     {
-        return view('purchases.add');
+        return view('purchases.create');
     }
 
     /**

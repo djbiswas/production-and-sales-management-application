@@ -26,39 +26,30 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>{{ config('app.name', 'Laravel') }}</h3>
+            <h3> <a href="/">{{ config('app.name', 'Laravel') }} </a></h3>
         </div>
 
         <ul class="list-unstyled components">
-            <p>DASHBOARD</p>
+            <p><a href="/">DASHBOARD</a></p>
             <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Purchases</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#">Home 1</a>
+                        <a href="/purchases">All Purchase</a>
+                    </li> <li>
+                        <a href="/purchases/create">New Purchase</a>
                     </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
+
                 </ul>
             </li>
             <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sales</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#">Page 1</a>
+                        <a href="#">All Sales</a>
                     </li>
                     <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
+                        <a href="#">New Sales</a>
                     </li>
                 </ul>
             </li>
