@@ -35,9 +35,9 @@
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Purchases</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="/purchases">All Purchase</a>
+                        <a href="/materialPurchases">All Purchase</a>
                     </li> <li>
-                        <a href="/purchases/create">New Purchase</a>
+                        <a href="/materialPurchases/create">New Purchase</a>
                     </li>
 
                 </ul>
@@ -53,11 +53,11 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#">Portfolio</a>
+            <li class="">
+                <a href="#">Products</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="#">Customers</a>
             </li>
         </ul>
 
@@ -125,6 +125,7 @@
 
         <div id="content-main">
 
+            @include('flash::message')
             @yield('content')
 
         </div>
@@ -164,6 +165,10 @@
             $('.select2_op').select2();
         });
 
+    </script>
+
+    <script>
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
 
     @yield('scripts')

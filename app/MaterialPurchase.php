@@ -12,4 +12,14 @@ class MaterialPurchase extends Model
 
         return $this->belongsToMany(ProductCategory::class, 'product_model', 'category_id','model_id') ;
     }
+
+    public function product_models(){
+
+        return $this->belongsTo(ProductModel::class, 'product_model_id', 'id') ;
+    }
+
+    public function suppliers(){
+
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id') ;
+    }
 }

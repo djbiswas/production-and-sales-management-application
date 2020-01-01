@@ -2,7 +2,7 @@
 
 @section('content')
     <h2>Add Purchases</h2>
-    {!! Form::open(['route' => 'purchases.store', 'method' => 'post', 'enctype' => 'multipart/form-data' ]) !!}
+    {!! Form::open(['route' => 'materialPurchases.store', 'method' => 'post', 'enctype' => 'multipart/form-data' ]) !!}
     {{csrf_field()}}
 
     {{-- {{Form::label('parentcategory_id', 'Select Product')}}
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-6">
-            {{Form::label('supplier', 'Select Supplier')}}
+            {{Form::label('supplier', 'Select Supplier / Port')}}
             <div class="form-group mb-3">
                 {{Form::select('supplier', $suppliers, null, ['class' => 'select2_op form-control', 'required'])}}
             </div>
@@ -29,41 +29,31 @@
         <div class="col-4">
             {{Form::label('currency', 'Select Currency')}}
             <div class="input-group mb-3">
-                {{Form::select('currency', ['Doller' => 'Doller', 'Rupe' => 'Rupe', 'Taka' => 'Taka'], null, ['class' => 'form-control', 'required'] )}}
+                {{Form::select('currency', ['Doller' => 'Doller', 'Rupee' => 'Rupee', 'Taka' => 'Taka'], null, ['onblur' => 'load_bdt()','class' => 'form-control', 'required'] )}}
             </div>
         </div>
         <div class="col-4">
-            {{Form::label('total_amount', 'Total Amount')}}
+            {{Form::label('lc', 'Total LC')}}
             <div class="input-group mb-3">
-                {{Form::number('total_amount', null, array('class' => 'form-control', 'placeholder' => 'Total Amount'))}}
+                {{Form::number('lc', null, array('class' => 'form-control', 'onblur' => 'load_bdt()', 'placeholder' => 'Total LC', 'required'))}}
             </div>
         </div>
         <div class="col-4">
-            {{Form::label('total_bdt_amount', 'BDT Amount')}}
+            {{Form::label('duty', 'Custom Duty(৳)')}}
             <div class="input-group mb-3">
-                {{Form::number('total_bdt_amount', null, array('class' => 'form-control', 'placeholder' => 'BDT Amount', 'readonly'  ))}}
+                {{Form::number('duty', null, array('onblur' => 'load_bdt()','class' => 'form-control', 'placeholder' => 'Custom Duty' , 'required' ))}}
             </div>
         </div>
+    </div>
+
+    {{Form::label('total_bdt', 'BDT Amount (৳)')}}
+    <div class="input-group mb-3">
+        {{Form::number('total_bdt', null, array('class' => 'form-control', 'placeholder' => 'BDT Amount', 'readonly', 'required'  ))}}
     </div>
 
     {{Form::label('quantity', 'Quantity')}}
     <div class="input-group mb-3">
-        {{Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => 'Quantity'))}}
-    </div>
-
-    <div class="row">
-        <div class="col-6">
-            {{Form::label('unit_price', 'Unit Price')}}
-            <div class="input-group mb-3">
-                {{Form::number('unit_price', null, array('class' => 'form-control', 'placeholder' => 'Unit Price'))}}
-            </div>
-        </div>
-        <div class="col-6">
-            {{Form::label('sell_price', 'Sell Price')}}
-            <div class="input-group mb-3">
-                {{Form::number('sell_price', null, array('class' => 'form-control', 'placeholder' => 'Sell Price'))}}
-            </div>
-        </div>
+        {{Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => 'Quantity', 'required'))}}
     </div>
 
 
@@ -78,6 +68,34 @@
 @endsection
 
 @section('scripts')
+    <script>
+        function load_bdt(){
+            var bdt = 0;
+            var total_amount = $("#lc").val();
+            var currency = $("#currency").val();
+            var duty = $("#duty").val();
+            var usd = 83.5;
+            var rupee = 1.2;
+            // var bdt = 1;
+            if (currency == 'Doller'){
+                bdt = (total_amount * usd) + parseFloat(duty);
+
+            }
+            if (currency == 'Rupee'){
+                bdt = (total_amount * rupee) + parseFloat(duty);
+            }
+
+            // if (currency == 'Taka'){
+            //
+            // }
+
+            document.getElementById('total_bdt').value = bdt;
+            console.log(bdt);
+
+        }
+
+
+    </script>
 
 @endsection
 
