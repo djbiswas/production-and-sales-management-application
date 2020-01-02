@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.css"/>
 
     {{--    <h2>All Purchases</h2>--}}
 
@@ -43,7 +42,7 @@
                                     @method('DELETE')
                                     {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
 
-                                    <a class="btn btn-info" href="{{route('materialPurchases.edit', $purchase->id)}}"> সম্পাদন</a>
+                                    <a class="btn btn-info" href="{{route('materialPurchases.edit', $purchase->id)}}"> Edit</a>
                                 </form>
                             </td>
                         </tr>

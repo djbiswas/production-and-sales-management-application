@@ -14,7 +14,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('suppliers.index');
+        $suppliers = Supplier::get();
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.create');
     }
 
     /**
@@ -35,7 +36,18 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $supplier = new Supple();
+        $supplier->name = $request->name;
+
+        $supplier->save();
+
+        flash('New Suppplier Add Success.')->success();
+
+        return redirect()->route('suppliers.index');
     }
 
     /**
@@ -44,9 +56,8 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
-    {
-        //
+    public function show(Supplier $supplier)    {
+        return view('suppliers.index', compact('supplier'));
     }
 
     /**
@@ -57,7 +68,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+       return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -69,7 +80,18 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $supplier = Supplier::find($supplier->id);
+        $supplier->name = $request->name;
+
+        $supplier->save();
+
+        flash('Suppplier Update Success.')->success();
+
+        return redirect()->route('suppliers.index');
     }
 
     /**
