@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::get();
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -35,7 +36,25 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'sometimes',
+            'email' => 'sometimes',
+            'address' => 'sometimes'
+        ]);
+
+        $customer = new Customer();
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->address = $request->address;
+
+        $customer->save();
+
+        flash('New Customers Add Success.')->success();
+
+        return redirect()->route('customers.index');
+
     }
 
     /**
@@ -57,7 +76,7 @@ class CustomerController extends Controller
      */
     public function edit(customer $customer)
     {
-        //
+        return view('customers.edit',compact('customer'));
     }
 
     /**
@@ -69,7 +88,24 @@ class CustomerController extends Controller
      */
     public function update(Request $request, customer $customer)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'sometimes',
+            'email' => 'sometimes',
+            'address' => 'sometimes'
+        ]);
+
+        $customer_data = Customer::find($customer->id);
+        $customer_data->name = $request->name;
+        $customer_data->phone = $request->phone;
+        $customer_data->email = $request->email;
+        $customer_data->address = $request->address;
+
+        $customer->save();
+
+        flash('Customers Update Success.')->success();
+
+        return redirect()->route('customers.index');
     }
 
     /**

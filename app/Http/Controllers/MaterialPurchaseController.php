@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\MaterialPurchase;
 use App\ProductModel;
 use App\Supplier;
+use App\Currency;
 use Illuminate\Http\Request;
 
 class MaterialPurchaseController extends Controller
@@ -35,7 +36,13 @@ class MaterialPurchaseController extends Controller
     {
         $products = ProductModel::pluck('product_model_name', 'id');
         $suppliers = Supplier::pluck('name', 'id');
-        return view('purchases.create')->with(compact('products','suppliers'));
+        $currencies = Currency::pluck('name', 'value');
+        return view('purchases.create')->with(compact('products','suppliers','currencies'));
+
+    }
+
+
+    function get_currency() {
 
     }
 

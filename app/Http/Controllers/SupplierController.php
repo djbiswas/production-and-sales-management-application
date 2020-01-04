@@ -40,7 +40,7 @@ class SupplierController extends Controller
             'name' => 'required'
         ]);
 
-        $supplier = new Supple();
+        $supplier = new Supplier();
         $supplier->name = $request->name;
 
         $supplier->save();

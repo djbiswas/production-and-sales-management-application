@@ -29,7 +29,7 @@
         <div class="col-4">
             {{Form::label('currency', 'Select Currency')}}
             <div class="input-group mb-3">
-                {{Form::select('currency', ['Doller' => 'Doller', 'Rupee' => 'Rupee', 'Taka' => 'Taka'], null, ['onblur' => 'load_bdt()','class' => 'form-control', 'required'] )}}
+                {{Form::select('currency', $currencies, null, ['onblur' => 'load_bdt()','class' => 'form-control', 'required'] )}}
             </div>
         </div>
         <div class="col-4">
@@ -72,22 +72,13 @@
         function load_bdt(){
             var bdt = 0;
             var total_amount = $("#lc").val();
-            var currency = $("#currency").val();
+            var currency_val = $("#currency").val();
             var duty = $("#duty").val();
-            var usd = 83.5;
-            var rupee = 1.2;
-            // var bdt = 1;
-            if (currency == 'Doller'){
-                bdt = (total_amount * usd) + parseFloat(duty);
-
-            }
-            if (currency == 'Rupee'){
-                bdt = (total_amount * rupee) + parseFloat(duty);
+            if(duty == ''){
+                duty = 0;
             }
 
-            // if (currency == 'Taka'){
-            //
-            // }
+            bdt = (total_amount * currency_val) + parseFloat(duty);
 
             document.getElementById('total_bdt').value = bdt;
             console.log(bdt);

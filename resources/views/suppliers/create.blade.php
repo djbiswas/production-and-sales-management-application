@@ -7,7 +7,7 @@
 
     {{Form::label('name', 'Supplier Name')}}
     <div class="input-group mb-3">
-        {{Form::number('name', null, array('class' => 'form-control', 'placeholder' => 'Supplier Name', 'required'  ))}}
+        {{Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Supplier Name', 'required'  ))}}
     </div>
 
     <hr>

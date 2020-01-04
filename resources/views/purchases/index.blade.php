@@ -2,7 +2,18 @@
 
 @section('content')
 
-    {{--    <h2>All Purchases</h2>--}}
+
+    <div class="row">
+        <div class="col">
+            <h2>All Purchases</h2>
+        </div>
+        <div class="col text-right">
+
+        <a href="{{route('materialPurchases.create')}}" class="btn btn-primary">
+            <i class="mdi mdi-account-edit"></i> New Purchase</a>
+        </div>
+    </div>
+
 
             <div class="card-content">
                 <table id="purchases" class="table is-narrow">

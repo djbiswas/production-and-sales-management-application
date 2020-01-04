@@ -38,10 +38,21 @@
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
                         <a href="/materialPurchases">All Purchase</a>
-                    </li> <li>
+                    </li>
+                    <li>
                         <a href="/materialPurchases/create">New Purchase</a>
                     </li>
-
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Currency Convert</a>
+                <ul class="collapse list-unstyled" id="currencySubmenu">
+                    <li>
+                        <a href="/currencies">List Of Currencies</a>
+                    </li>
+                    <li>
+                        <a href="/currencies/create">Add New Currency</a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -66,11 +77,37 @@
                     </li>
                 </ul>
             </li>
+
+            <li>
+                <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Customers</a>
+                <ul class="collapse list-unstyled" id="customerSubmenu">
+                    <li>
+                        <a href="/customers">All Customers</a>
+                    </li>
+                    <li>
+                        <a href="/customers/create">New Customer</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
+                <ul class="collapse list-unstyled" id="reportSubmenu">
+                    <li>
+                        <a href="/materialPurchases">Purchase</a>
+                    </li>
+                    <li>
+                        <a href="/customers">Customers</a>
+                    </li>
+                    <li>
+                        <a href="/suppliers">Suppliers</a>
+                    </li>
+
+                </ul>
+            </li>
+
             <li class="">
                 <a href="#">Products</a>
-            </li>
-            <li>
-                <a href="#">Customers</a>
             </li>
         </ul>
 

@@ -22,4 +22,5 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('/suppliers', 'SupplierController');
 Route::resource('/materialPurchases', 'MaterialPurchaseController');
-Route::resource('/suppliers', 'SupplierController');
+Route::resource('/currencies', 'CurrencyController');
+Route::resource('/customers', 'CustomerController');
