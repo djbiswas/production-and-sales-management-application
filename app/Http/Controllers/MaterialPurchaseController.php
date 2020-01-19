@@ -110,7 +110,8 @@ class MaterialPurchaseController extends Controller
 
         $products = ProductModel::pluck('product_model_name', 'id');
         $suppliers = Supplier::pluck('name', 'id');
-        return view('purchases.edit')->with(compact('materialPurchase','products','suppliers'));
+        $currencies = Currency::pluck('name', 'value');
+        return view('purchases.edit')->with(compact('materialPurchase','products','suppliers','currencies'));
     }
 
     /**

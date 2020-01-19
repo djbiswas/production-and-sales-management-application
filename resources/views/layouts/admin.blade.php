@@ -44,7 +44,77 @@
                     </li>
                 </ul>
             </li>
-            <li class="active">
+            <li>
+                <a href="#productTypesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Product Types</a>
+                <ul class="collapse list-unstyled" id="productTypesSubmenu">
+                    <li>
+                        <a href="/productTypes">Product Type List</a>
+                    </li>
+                    <li>
+                        <a href="/productTypes/create">New Product Type</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#stockItemGroupsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stock Item Groups </a>
+                <ul class="collapse list-unstyled" id="stockItemGroupsSubmenu">
+                    <li>
+                        <a href="/stockItemGroups">Stock ItemGroup List</a>
+                    </li>
+                    <li>
+                        <a href="/stockItemGroups/create">New Stock ItemGroup</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#stockUnitsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stock Units Groups </a>
+                <ul class="collapse list-unstyled" id="stockUnitsSubmenu">
+                    <li>
+                        <a href="/stockUnits">Stock Units List</a>
+                    </li>
+                    <li>
+                        <a href="/stockUnits/create">New Stock Unit</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#taxCategoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tax Categories </a>
+                <ul class="collapse list-unstyled" id="taxCategoriesSubmenu">
+                    <li>
+                        <a href="/taxCategories">Tax Category List</a>
+                    </li>
+                    <li>
+                        <a href="/taxCategories/create">New Tax Category</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#lcSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">LC list </a>
+                <ul class="collapse list-unstyled" id="lcSubmenu">
+                    <li>
+                        <a href="/lcs">Lc List</a>
+                    </li>
+                    <li>
+                        <a href="/lcs/create">Add New Lc</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Products</a>
+                <ul class="collapse list-unstyled" id="productSubmenu">
+                    <li>
+                        <a href="/productModels">All Products</a>
+                    </li>
+                    <li>
+                        <a href="/productModels/create">New Product</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
                 <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Currency Convert</a>
                 <ul class="collapse list-unstyled" id="currencySubmenu">
                     <li>
@@ -90,6 +160,8 @@
                 </ul>
             </li>
 
+            <hr style="margin: 0;">
+
             <li>
                 <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
                 <ul class="collapse list-unstyled" id="reportSubmenu">
@@ -104,10 +176,6 @@
                     </li>
 
                 </ul>
-            </li>
-
-            <li class="">
-                <a href="#">Products</a>
             </li>
         </ul>
 
@@ -176,6 +244,15 @@
         <div id="content-main">
 
             @include('flash::message')
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @yield('content')
 
         </div>

@@ -20,7 +20,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 
+
 Route::resource('/suppliers', 'SupplierController');
+Route::resource('/productModels', 'ProductModelController');
 Route::resource('/materialPurchases', 'MaterialPurchaseController');
 Route::resource('/currencies', 'CurrencyController');
 Route::resource('/customers', 'CustomerController');
+Route::resource('/productTypes', 'ProductTypeController');
+Route::resource('/stockItemGroups', 'StockItemGroupController');
+Route::resource('/taxCategories', 'TaxCategoryController');
+Route::resource('/stockUnits', 'StockUnitController');
+Route::resource('/lcs', 'LcController');

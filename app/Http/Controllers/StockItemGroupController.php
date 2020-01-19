@@ -14,7 +14,8 @@ class StockItemGroupController extends Controller
      */
     public function index()
     {
-        //
+        $stockItemGroups = StockItemGroup::get();
+        return view('stockItemGroups.index',compact('stockItemGroups'));
     }
 
     /**
@@ -24,7 +25,7 @@ class StockItemGroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('stockItemGroups.create');
     }
 
     /**
@@ -35,7 +36,21 @@ class StockItemGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'group_name' => 'required',
+            'group_description' => 'sometimes'
+
+        ]);
+
+        $stockItemGroup = new StockItemGroup();
+        $stockItemGroup->group_name = $request->group_name;
+        $stockItemGroup->group_description = $request->group_description;
+
+        $stockItemGroup->save();
+
+        flash('New Stock Group Add Success.')->success();
+
+        return redirect()->route('stockItemGroups.index');
     }
 
     /**
@@ -57,7 +72,7 @@ class StockItemGroupController extends Controller
      */
     public function edit(StockItemGroup $stockItemGroup)
     {
-        //
+        return view('stockItemGroups.edit',compact('stockItemGroup'));
     }
 
     /**
@@ -69,7 +84,21 @@ class StockItemGroupController extends Controller
      */
     public function update(Request $request, StockItemGroup $stockItemGroup)
     {
-        //
+        $this->validate($request, [
+            'group_name' => 'required',
+            'group_description' => 'sometimes'
+
+        ]);
+
+        $stockItemGroup = StockItemGroup::find($stockItemGroup->id);
+        $stockItemGroup->group_name = $request->group_name;
+        $stockItemGroup->group_description = $request->group_description;
+
+        $stockItemGroup->save();
+
+        flash('New Stock Group Update Success.')->success();
+
+        return redirect()->route('stockItemGroups.index');
     }
 
     /**

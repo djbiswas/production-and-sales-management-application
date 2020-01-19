@@ -14,7 +14,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        //
+        $productTypes = ProductType::get();
+        return view('productTypes.index',compact('productTypes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('productTypes.create');
     }
 
     /**
@@ -35,7 +36,21 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'product_type_name' => 'required',
+            'product_type_notes' => 'sometimes'
+
+        ]);
+
+        $productType = new ProductType();
+        $productType->product_type_name = $request->product_type_name;
+        $productType->product_type_notes = $request->product_type_notes;
+
+        $productType->save();
+
+        flash('New Product Type Add Success.')->success();
+
+        return redirect()->route('productTypes.index');
     }
 
     /**
@@ -57,7 +72,7 @@ class ProductTypeController extends Controller
      */
     public function edit(ProductType $productType)
     {
-        //
+        return view('productTypes.edit',compact('productType'));
     }
 
     /**
@@ -69,7 +84,21 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, ProductType $productType)
     {
-        //
+        $this->validate($request, [
+            'product_type_name' => 'required',
+            'product_type_notes' => 'sometimes'
+
+        ]);
+
+        $productType = ProductType::find($productType->id);
+        $productType->product_type_name = $request->product_type_name;
+        $productType->product_type_notes = $request->product_type_notes;
+
+        $productType->save();
+
+        flash('New Product Type Update Success.')->success();
+
+        return redirect()->route('productTypes.index');
     }
 
     /**

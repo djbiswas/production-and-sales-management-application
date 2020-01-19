@@ -14,7 +14,8 @@ class StockUnitController extends Controller
      */
     public function index()
     {
-        //
+        $stockUnits = StockUnit::get();
+        return view('stockUnits.index',compact('stockUnits'));
     }
 
     /**
@@ -24,7 +25,7 @@ class StockUnitController extends Controller
      */
     public function create()
     {
-        //
+        return view('stockUnits.create');
     }
 
     /**
@@ -35,7 +36,21 @@ class StockUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'unit_name' => 'required',
+            'unit_description' => 'sometimes'
+
+        ]);
+
+        $stockUnit = New StockUnit();
+        $stockUnit->unit_name = $request->unit_name;
+        $stockUnit->unit_description = $request->unit_description;
+
+        $stockUnit->save();
+
+        flash('Stock Unit Add Success')->success();
+
+        return redirect()->route('stockUnits.index');
     }
 
     /**
@@ -57,7 +72,7 @@ class StockUnitController extends Controller
      */
     public function edit(StockUnit $stockUnit)
     {
-        //
+        return view('stockUnits.edit',compact('stockUnit'));
     }
 
     /**
@@ -69,7 +84,21 @@ class StockUnitController extends Controller
      */
     public function update(Request $request, StockUnit $stockUnit)
     {
-        //
+        $this->validate($request, [
+            'unit_name' => 'required',
+            'unit_description' => 'sometimes'
+
+        ]);
+
+        $stockUnit = StockUnit::find($stockUnit->id);
+        $stockUnit->unit_name = $request->unit_name;
+        $stockUnit->unit_description = $request->unit_description;
+
+        $stockUnit->save();
+
+        flash('Stock Unit Update Success')->success();
+
+        return redirect()->route('stockUnits.index');
     }
 
     /**

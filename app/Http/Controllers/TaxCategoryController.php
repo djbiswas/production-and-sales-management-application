@@ -14,7 +14,8 @@ class TaxCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $tax_categories = TaxCategory::get();
+        return view('taxCategories.index',compact('tax_categories'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TaxCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('taxCategories.create');
     }
 
     /**
@@ -35,7 +36,21 @@ class TaxCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'tax_name' => 'required',
+            'tax_description' => 'sometimes'
+
+        ]);
+
+        $taxCategory = new TaxCategory();
+        $taxCategory->tax_name = $request->tax_name;
+        $taxCategory->tax_description = $request->tax_description;
+
+        $taxCategory->save();
+
+        flash('New Tax Category Add Success')->success();
+
+        return redirect()->route('productTypes.index');
     }
 
     /**
@@ -57,7 +72,7 @@ class TaxCategoryController extends Controller
      */
     public function edit(TaxCategory $taxCategory)
     {
-        //
+        return view('taxCategories.edit',compact('taxCategory'));
     }
 
     /**
@@ -69,7 +84,21 @@ class TaxCategoryController extends Controller
      */
     public function update(Request $request, TaxCategory $taxCategory)
     {
-        //
+        $this->validate($request, [
+            'tax_name' => 'required',
+            'tax_description' => 'sometimes'
+
+        ]);
+
+        $taxCategory = TaxCategory::find($taxCategory->id);
+        $taxCategory->tax_name = $request->tax_name;
+        $taxCategory->tax_description = $request->tax_description;
+
+        $taxCategory->save();
+
+        flash('Tax Category Update Success')->success();
+
+        return redirect()->route('stockUnits.index');
     }
 
     /**

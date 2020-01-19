@@ -27,8 +27,6 @@
         </div>
     </div>
 
-
-
     <hr>
     <div class="text-right">
 
@@ -40,7 +38,7 @@
 
 @section('scripts')
     <script>
-
+        
     </script>
 
 @endsection

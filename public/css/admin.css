@@ -11443,7 +11443,7 @@ a:focus {
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+  border-bottom: 1px solid #6778bf;
 }
 
 #sidebar ul p {
@@ -11576,5 +11576,9 @@ a.article:hover {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.btn-info {
+    color:#fff;
 }
 

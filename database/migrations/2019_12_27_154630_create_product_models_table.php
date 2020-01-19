@@ -17,9 +17,14 @@ class CreateProductModelsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_type_id');
             $table->string('product_model_name');
+            $table->double('unitPrice',25,2)->nullable();
+            $table->double('sellPrice',25,2)->nullable();
+            $table->bigInteger('quantity')->nullable();
+
             $table->unsignedBigInteger('stock_item_group_id');
             $table->unsignedBigInteger('tax_category_id');
             $table->unsignedBigInteger('stock_unit_id');
+            $table->unsignedBigInteger('lc_id');
 
             $table->string('model_description')->nullable();
             $table->foreign('product_type_id')->references('id')
@@ -32,6 +37,8 @@ class CreateProductModelsTable extends Migration
                 ->on('tax_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('stock_unit_id')->references('id')
                 ->on('stock_units')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('lc_id')->references('id')
+                ->on('lcs')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
 
