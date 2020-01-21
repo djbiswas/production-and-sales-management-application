@@ -14,7 +14,8 @@ class SalesController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sales::get();
+        return view('sales.index', compact('sales'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SalesController extends Controller
      */
     public function create()
     {
-        //
+        return view('sales.create');
     }
 
     /**

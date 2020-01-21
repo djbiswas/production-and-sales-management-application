@@ -35,7 +35,7 @@
                     @foreach ($purchases as $purchase)
                         <tr>
 
-                            <th>{{$purchase->id}} </th>
+                            <td>{{$purchase->id}} </td>
                             <td>{{$purchase->product_models->product_model_name}}</td>
                             <td>{{$purchase->suppliers->name}}</td>
                             <td>{{$purchase->lc}}</td>

@@ -31,3 +31,4 @@ Route::resource('/stockItemGroups', 'StockItemGroupController');
 Route::resource('/taxCategories', 'TaxCategoryController');
 Route::resource('/stockUnits', 'StockUnitController');
 Route::resource('/lcs', 'LcController');
+Route::resource('/sales', 'SalesController');
