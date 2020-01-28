@@ -106,42 +106,13 @@
                     <span>{{ $message }}</span>
                     @enderror
                 </div>
+
+                <div class="col-12">
+                    {{Form::submit('Add', ['class' => 'btn btn-primary float-right']) }}
+                </div>
+
             </div>
             <!-- Submit Button Form -->
-            {{Form::submit('Add', ['class' => 'btn btn-primary float-right']) }}
-        </div>
-    </div>
-
-    <div class="card card-accent-primary mb-3" style="">
-        <div class="card-header text-center"><h3>{{ config('app.name', 'Laravel') }}</h3></div>
-        <div class="card-body text-dark">
-            <table id="purchases" class="table is-narrow">
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Unit price</th>
-                    <th>Total</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                </tr>
-                <tr>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                    <td>Product 01 </td>
-                </tr>
-                </tbody>
-            </table>
 
             <hr>
 
@@ -187,11 +158,8 @@
                     @enderror
 
                 </div>
-
-
-
             </div>
-            <hr class="card-accent-primary">
+
             <div class="form-row">
                 <div class="col-5"></div>
                 <div class="col">
@@ -219,19 +187,29 @@
                     <!-- Due Input Form -->
                     <div class="form-group  ">
                         {{Form::label('due','Due:') }}
-                        
+
                         {{Form::text('due', null, ['class' => 'form-control', 'placeholder' => 'Due', 'required']) }}
 
                         @error('due')
                         <span>{{ $message }}</span>
                         @enderror
-                        
+
                     </div>
-                    
+
 
 
                 </div>
             </div>
+
+            
+        </div>
+    </div>
+
+    <div class="card card-accent-primary mb-3" style="">
+        <div class="card-body text-dark">
+
+            <hr class="card-accent-primary">
+
         </div>
 
 

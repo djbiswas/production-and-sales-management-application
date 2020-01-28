@@ -32,3 +32,4 @@ Route::resource('/taxCategories', 'TaxCategoryController');
 Route::resource('/stockUnits', 'StockUnitController');
 Route::resource('/lcs', 'LcController');
 Route::resource('/sales', 'SalesController');
+Route::get('/sales_item', 'SalesController@sales_item')->name('sales_item');

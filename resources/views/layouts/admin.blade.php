@@ -34,9 +34,11 @@
 
         <ul class="list-unstyled components">
             <p><a href="/">DASHBOARD</a></p>
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Purchases</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li class="accordion" id="accordionExample">
+
+                {{-- Purchases submenu--}}
+                <a href="#purchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#purchasesSubmenu" >Purchases</a>
+                <ul class="{{ Request::path() === 'materialPurchases' || Request::path() === 'materialPurchases/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="purchasesSubmenu">
                     <li>
                         <a href="/materialPurchases">All Purchase</a>
                     </li>
@@ -44,10 +46,12 @@
                         <a href="/materialPurchases/create">New Purchase</a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#productTypesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Product Types</a>
-                <ul class="collapse list-unstyled" id="productTypesSubmenu">
+
+
+                {{-- Product Types submenu--}}
+
+                <a href="#productTypesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productTypesSubmenu" >Product Types</a>
+                <ul class="{{ Request::path() === 'productTypes' || Request::path() === 'productTypes/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productTypesSubmenu">
                     <li>
                         <a href="/productTypes">Product Type List</a>
                     </li>
@@ -55,10 +59,12 @@
                         <a href="/productTypes/create">New Product Type</a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#stockItemGroupsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stock Item Groups </a>
-                <ul class="collapse list-unstyled" id="stockItemGroupsSubmenu">
+
+
+
+                {{-- Stock Item Groups submenu--}}
+                <a href="#stockItemGroupsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockItemGroupsSubmenu" >Stock Items Group</a>
+                <ul class="{{ Request::path() === 'stockItemGroups' || Request::path() === 'stockItemGroups/create' ? 'show ' : ''}} collapse list-unstyled" data-parent="#accordionExample" id="stockItemGroupsSubmenu">
                     <li>
                         <a href="/stockItemGroups">Stock ItemGroup List</a>
                     </li>
@@ -66,11 +72,13 @@
                         <a href="/stockItemGroups/create">New Stock ItemGroup</a>
                     </li>
                 </ul>
-            </li>
 
-            <li>
-                <a href="#stockUnitsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stock Units Groups </a>
-                <ul class="collapse list-unstyled" id="stockUnitsSubmenu">
+
+
+                {{-- Stock Units Groups submenu--}}
+
+                <a href="#stockUnitsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockUnitsSubmenu" >Stock Units Groups </a>
+                <ul class="{{ Request::path() === 'stockUnits' || Request::path() === 'stockUnits/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="stockUnitsSubmenu">
                     <li>
                         <a href="/stockUnits">Stock Units List</a>
                     </li>
@@ -78,11 +86,13 @@
                         <a href="/stockUnits/create">New Stock Unit</a>
                     </li>
                 </ul>
-            </li>
 
-            <li>
-                <a href="#taxCategoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tax Categories </a>
-                <ul class="collapse list-unstyled" id="taxCategoriesSubmenu">
+
+
+                {{-- Tax Categories Groups submenu --}}
+
+                <a href="#taxCategoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#taxCategoriesSubmenu" >Tax Categories </a>
+                <ul class="{{ Request::path() === 'taxCategories' || Request::path() === 'taxCategories/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="taxCategoriesSubmenu">
                     <li>
                         <a href="/taxCategories">Tax Category List</a>
                     </li>
@@ -90,11 +100,13 @@
                         <a href="/taxCategories/create">New Tax Category</a>
                     </li>
                 </ul>
-            </li>
 
-            <li>
-                <a href="#lcSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">LC list </a>
-                <ul class="collapse list-unstyled" id="lcSubmenu">
+
+
+                {{-- LC list submenu --}}
+
+                <a href="#lcSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#lcSubmenu" >LC list </a>
+                <ul class="{{ Request::path() === 'lcs' || Request::path() === 'lcs/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="lcSubmenu">
                     <li>
                         <a href="/lcs">Lc List</a>
                     </li>
@@ -102,11 +114,12 @@
                         <a href="/lcs/create">Add New Lc</a>
                     </li>
                 </ul>
-            </li>
 
-            <li>
-                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Products</a>
-                <ul class="collapse list-unstyled" id="productSubmenu">
+
+                {{-- Products submenu --}}
+
+                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productSubmenu" >Products</a>
+                <ul class="{{ Request::path() === 'productModels' || Request::path() === 'productModels/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productSubmenu">
                     <li>
                         <a href="/productModels">All Products</a>
                     </li>
@@ -114,10 +127,12 @@
                         <a href="/productModels/create">New Product</a>
                     </li>
                 </ul>
-            </li>
-            <li class="">
-                <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Currency Convert</a>
-                <ul class="collapse list-unstyled" id="currencySubmenu">
+
+
+                {{-- Currency Convert submenu --}}
+
+                <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#currencySubmenu" >Currency Convert</a>
+                <ul class="{{ Request::path() === 'currencies' || Request::path() === 'currencies/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="currencySubmenu">
                     <li>
                         <a href="/currencies">List Of Currencies</a>
                     </li>
@@ -125,10 +140,13 @@
                         <a href="/currencies/create">Add New Currency</a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#saleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sales</a>
-                <ul class="collapse list-unstyled" id="saleSubmenu">
+
+
+
+                {{-- Sales submenu --}}
+
+                <a href="#saleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#saleSubmenu">Sales</a>
+                <ul class="{{ Request::path() === 'sales' || Request::path() === 'sales/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="saleSubmenu">
                     <li>
                         <a href="/sales">All Sales</a>
                     </li>
@@ -136,10 +154,12 @@
                         <a href="/sales/create">New Sales</a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#supplierSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Suppliers</a>
-                <ul class="collapse list-unstyled" id="supplierSubmenu">
+
+
+                {{-- Suppliers submenu --}}
+
+                <a href="#supplierSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#supplierSubmenu" >Suppliers</a>
+                <ul class="{{ Request::path() === 'suppliers' || Request::path() === 'suppliers/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="supplierSubmenu">
                     <li>
                         <a href="/suppliers">All Suppliers</a>
                     </li>
@@ -147,11 +167,12 @@
                         <a href="/suppliers/create">New Suppliers</a>
                     </li>
                 </ul>
-            </li>
 
-            <li>
-                <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Customers</a>
-                <ul class="collapse list-unstyled" id="customerSubmenu">
+
+                {{-- Customers submenu --}}
+
+                <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#customerSubmenu" >Customers</a>
+                <ul class="{{ Request::path() === 'customers' || Request::path() === 'customers/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="customerSubmenu">
                     <li>
                         <a href="/customers">All Customers</a>
                     </li>
@@ -159,13 +180,13 @@
                         <a href="/customers/create">New Customer</a>
                     </li>
                 </ul>
-            </li>
 
-            <hr style="margin: 0;">
+                <hr style="margin: 0;">
 
-            <li>
-                <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
-                <ul class="collapse list-unstyled" id="reportSubmenu">
+                {{-- Reports submenu --}}
+
+                <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#reportSubmenu" >Reports</a>
+                <ul class="{{ Request::path() === 'materialPurchases' || Request::path() === 'customers' || Request::path() === 'suppliers' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="reportSubmenu">
                     <li>
                         <a href="/materialPurchases">Purchase</a>
                     </li>
@@ -177,7 +198,11 @@
                     </li>
 
                 </ul>
+
+
             </li>
+
+
         </ul>
 
         <ul class="list-unstyled CTAs">
@@ -191,7 +216,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-{{--                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Log Out</a>--}}
+                {{--                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Log Out</a>--}}
             </li>
             <li>
                 <a href="/" class="article">Back to Admin</a>
