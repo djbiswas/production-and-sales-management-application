@@ -32,6 +32,9 @@ Route::resource('/taxCategories', 'TaxCategoryController');
 Route::resource('/stockUnits', 'StockUnitController');
 Route::resource('/lcs', 'LcController');
 Route::resource('/sales', 'SalesController');
-Route::get('/sales_item', 'SalesController@sales_item')->name('sales_item');
 
-Route::get('/get-products', 'SalesController@getProducts');
+//Route::get('/sales_item', 'SalesController@sales_item')->name('sales_item');
+//Route::get('/get-products', 'SalesController@getProducts');
+
+Route::post('/addNewRow', 'SalesController@addNewRow');
+Route::post('/single_sell_item', 'SalesController@single_sell_item');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\customer;
 use App\ProductModel;
 use App\Sales;
 use Illuminate\Http\Request;
@@ -26,7 +27,13 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('sales.create');
+        $today = date("Ymd");
+        $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
+        $inv = $today . $rand;
+
+        $customers = customer::pluck('name','id');
+
+        return view('sales.create',compact('customers','inv'));
     }
 
     /**
@@ -37,7 +44,7 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -108,6 +115,19 @@ class SalesController extends Controller
         $products = ProductModel::where(`LOWER(`.$fieldName.`)`, 'LIKE', "$name%")->get();
 
         return $products;
+    }
+
+    public function addNewRow()
+    {
+        $products = ProductModel::pluck('product_model_name','id');
+        return view('sales.addNewRow',compact('products'));
+    }
+
+    public function single_sell_item(Request $request) {
+        $id = $request->id;
+        $product = ProductModel::where('id',$id)->first();
+        return $product;
+
     }
 
 }
