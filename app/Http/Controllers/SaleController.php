@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\customer;
 use App\ProductModel;
+use App\Sale;
 use App\SaleItem;
 use App\SalePayment;
-use App\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SalesController extends Controller
+class SaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $sales = Sales::get();
+        $sales = Sale::get();
         return view('sales.index', compact('sales'));
     }
 
@@ -69,7 +70,7 @@ class SalesController extends Controller
             $saleStatus = 'Complete';
         }
 
-        $sale = new Sales();
+        $sale = new Sale();
         $sale->invoice = $request->invoice;
         $sale->customer_id = $request->customer_id;
         $sale->user_id = Auth::user()->id;
@@ -82,6 +83,17 @@ class SalesController extends Controller
         $sale->due = $request->due;
         $sale->status = $saleStatus;
         $sale->save();
+
+
+//        $payment = [
+//            'invoice' => $request->invoice,
+//            'date' => $request->date,
+//            'sale_id' => $sale->id,
+//            'customer_id' => $request->customer_id,
+//            'user_id' => Auth::user()->id,
+//            'amount' => $request->paid
+//        ];
+
 
         $payment = new SalePayment();
         $payment->invoice = $request->invoice;
@@ -106,39 +118,40 @@ class SalesController extends Controller
         flash('New Sales Add Success.')->success();
 
         return redirect()->route('sales.index');
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sales  $sales
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function show(Sales $sales)
+    public function show(Sale $sale)
     {
-        //
+        $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->first();
+        return $sale;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sales  $sales
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sales $sales)
+    public function edit(Sale $sale)
     {
-        return $sales;
+        $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->first();
+        return $sale;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sales  $sales
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sales $sales)
+    public function update(Request $request, Sale $sale)
     {
         $this->validate($request, [
             'invoice' => 'required',
@@ -195,14 +208,15 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Sales  $sales
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sales $sales)
+    public function destroy(Sale $sale)
     {
-        //
+        $sale->delete();
+        flash('Sale Delete Success')->success();
+        return redirect()->route('sales.index');
     }
-
 
     /**
      * GetProducts
@@ -228,6 +242,7 @@ class SalesController extends Controller
         return $products;
     }
 
+
     public function addNewRow()
     {
         $products = ProductModel::pluck('product_model_name','id');
@@ -240,5 +255,4 @@ class SalesController extends Controller
         return $product;
 
     }
-
 }

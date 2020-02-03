@@ -26,14 +26,14 @@ class CreateSalesTable extends Migration
             $table->foreign('user_id')->references('id')
                 ->on('users')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->decimal('total', 25, 4);
+            $table->decimal('subtotal', 25, 4);
             $table->decimal('discount', 25, 4);
             $table->decimal('vat', 25, 4);
             $table->decimal('netTotal', 25, 4);
             $table->decimal('paid', 25, 4);
-            $table->decimal('status', 25, 4);
-            $table->text('note');
-
+            $table->decimal('due', 25, 4);
+            $table->string('status');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

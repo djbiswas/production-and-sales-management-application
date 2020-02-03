@@ -44,7 +44,7 @@
                             <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}">Invoice </a>
                             @csrf
                             @method('DELETE')
-                            {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
+                             <button type="submit" class="btn btn-danger">Delete</button>
                             <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>
                         </form>
                     </td>
