@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\customer;
 use App\ProductModel;
+use App\SaleItem;
+use App\SalePayment;
 use App\Sales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SalesController extends Controller
 {
@@ -44,7 +47,66 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $this->validate($request, [
+            'invoice' => 'required',
+            'customer_id' => 'required',
+            'date' => 'required',
+            'subtotal' => 'required',
+            'vat' => 'sometimes',
+            'discount' => 'sometimes',
+            'netTotal' => 'required',
+            'paid' => 'sometimes',
+            'due' => 'sometimes',
+            'product_model_id' => 'sometimes',
+            'orderQuantity' => 'sometimes',
+            'price' => 'sometimes',
+            'totalPrice' => 'sometimes'
+        ]);
+
+        $saleStatus = 'Due';
+
+        if ($request->due == 0){
+            $saleStatus = 'Complete';
+        }
+
+        $sale = new Sales();
+        $sale->invoice = $request->invoice;
+        $sale->customer_id = $request->customer_id;
+        $sale->user_id = Auth::user()->id;
+        $sale->date = $request->date;
+        $sale->subtotal = $request->subtotal;
+        $sale->vat = $request->vat;
+        $sale->discount = $request->discount;
+        $sale->netTotal = $request->netTotal;
+        $sale->paid = $request->paid;
+        $sale->due = $request->due;
+        $sale->status = $saleStatus;
+        $sale->save();
+
+        $payment = new SalePayment();
+        $payment->invoice = $request->invoice;
+        $payment->date = $request->date;
+        $payment->sale_id = $sale->id;
+        $payment->customer_id = $request->customer_id;
+        $payment->user_id = Auth::user()->id;
+        $payment->amount = $request->paid;
+        $payment->save();
+
+        for ($i=0; $i <count($request->price) ; $i++) {
+            $saleItem = new SaleItem();
+            $saleItem->invoice = $request->invoice;
+            $saleItem->sale_id = $sale->id;
+            $saleItem->product_model_id = $request->product_model_id[$i];
+            $saleItem->orderQuantity = $request->orderQuantity[$i];
+            $saleItem->price = $request->price[$i];
+            $saleItem->totalPrice = $request->totalPrice[$i];
+            $saleItem->save();
+        }
+
+        flash('New Sales Add Success.')->success();
+
+        return redirect()->route('sales.index');
+
     }
 
     /**
@@ -66,7 +128,7 @@ class SalesController extends Controller
      */
     public function edit(Sales $sales)
     {
-        //
+        return $sales;
     }
 
     /**
@@ -78,7 +140,56 @@ class SalesController extends Controller
      */
     public function update(Request $request, Sales $sales)
     {
-        //
+        $this->validate($request, [
+            'invoice' => 'required',
+            'customer_id' => 'required',
+            'date' => 'required',
+            'subtotal' => 'required',
+            'vat' => 'sometimes',
+            'discount' => 'sometimes',
+            'netTotal' => 'required',
+            'paid' => 'sometimes',
+            'due' => 'sometimes',
+            'product_model_id' => 'sometimes',
+            'orderQuantity' => 'sometimes',
+            'price' => 'sometimes',
+            'totalPrice' => 'sometimes'
+        ]);
+
+        $saleStatus = 'Due';
+
+        if ($request->due == 0){
+            $saleStatus = 'Complete';
+        }
+
+        $sale = Sales::find($sales->id);
+        $sale->invoice = $request->invoice;
+        $sale->customer_id = $request->customer_id;
+        $sale->user_id = Auth::user()->id;
+        $sale->date = $request->date;
+        $sale->subtotal = $request->subtotal;
+        $sale->vat = $request->vat;
+        $sale->discount = $request->discount;
+        $sale->netTotal = $request->netTotal;
+        $sale->paid = $request->paid;
+        $sale->due = $request->due;
+        $sale->status = $saleStatus;
+        $sale->save();
+
+        for ($i=0; $i <count($request->price) ; $i++) {
+            $saleItem = new SaleItem();
+            $saleItem->invoice = $request->invoice;
+            $saleItem->sale_id = $sale->id;
+            $saleItem->product_model_id = $request->product_model_id[$i];
+            $saleItem->orderQuantity = $request->orderQuantity[$i];
+            $saleItem->price = $request->price[$i];
+            $saleItem->totalPrice = $request->totalPrice[$i];
+            $saleItem->save();
+        }
+
+        flash('New Sales Add Success.')->success();
+
+        return redirect()->route('sales.index');
     }
 
     /**

@@ -39,7 +39,6 @@ class ProductTypeController extends Controller
         $this->validate($request, [
             'product_type_name' => 'required',
             'product_type_notes' => 'sometimes'
-
         ]);
 
         $productType = new ProductType();

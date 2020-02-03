@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Add Product</h2>
+    <h2>Edit Product</h2>
     {!!  Form::model($productModel,['method' =>'PATCH', 'route' => ['productModels.update', $productModel->id]])  !!}
 
     {{csrf_field()}}
@@ -68,7 +68,7 @@
 
     {{ Form::label('model_description', 'Product Description')}}
     <div class="input-group mb-3">
-        {{ Form::textarea('model_description', null, array('class' => 'form-control', 'placeholder' => 'Product Description', 'required'  ))}}
+        {{ Form::textarea('model_description', null, array('class' => 'form-control', 'placeholder' => 'Product Description'  ))}}
     </div>
 
     <hr>

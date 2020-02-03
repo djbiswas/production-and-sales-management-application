@@ -67,20 +67,27 @@ class MaterialPurchaseController extends Controller
 
         $unit_price = $request->total_bdt_amount / $request->quantity;
 
-
         $purchases = new MaterialPurchase();
         $purchases->product_model_id = $request->product;
         $purchases->supplier_id = $request->supplier;
+        $purchases->user_id = Auth::user()->id;
         $purchases->currency = $request->currency;
         $purchases->lc = $request->lc;
         $purchases->total_bdt = $request->total_bdt;
         $purchases->duty = $request->duty;
         $purchases->quantity = $request->quantity;
         $purchases->unit_price = $unit_price;
-
-
-
         $purchases->save();
+
+        $product = ProductModel::where('id',$request->product)->first();
+        $qty = $product->quantity;
+        $qty = $qty + $request->quantity;
+
+        $productModel = ProductModel::find($request->product);
+        $productModel->buyPrice = $request->total_bdt;
+        $productModel->unitPrice = $request->total_bdt;
+        $productModel->quantity = $qty;
+        $productModel->save();
 
         flash('New Purchases Add Success.')->success();
 
@@ -134,9 +141,13 @@ class MaterialPurchaseController extends Controller
 
         ]);
 
+        $product = ProductModel::where('id',$materialPurchase->product_model_id)->first();
+        $qty = $product->quantity;
+        $qty = $qty - $materialPurchase->quantity;
+        $qty = $qty + $request->quantity;
+
+
         $unit_price = $request->total_bdt_amount / $request->quantity;
-
-
         $purchases = MaterialPurchase::find($materialPurchase->id);
         $purchases->product_model_id = $request->product;
         $purchases->supplier_id = $request->supplier;
@@ -146,10 +157,15 @@ class MaterialPurchaseController extends Controller
         $purchases->duty = $request->duty;
         $purchases->quantity = $request->quantity;
         $purchases->unit_price = $unit_price;
-
-
-
         $purchases->save();
+
+
+
+        $productModel = ProductModel::find($purchases->product_model_id);
+        $productModel->buyPrice = $request->total_bdt;
+        $productModel->unitPrice = $request->total_bdt;
+        $productModel->quantity = $qty;
+        $productModel->save();
 
         flash('New Purchases Update Success.')->success();
 

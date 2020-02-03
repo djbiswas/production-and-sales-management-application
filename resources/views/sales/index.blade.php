@@ -9,7 +9,7 @@
         </div>
         <div class="col text-right">
 
-            <a href="{{route('materialPurchases.create')}}" class="btn btn-primary">
+            <a href="{{route('sales.create')}}" class="btn btn-primary">
                 <i class="mdi mdi-account-edit"></i> New Sales</a>
         </div>
     </div>
@@ -21,9 +21,8 @@
             <tr>
                 <th>No</th>
                 <th>Date</th>
-                <th>Product Name</th>
                 <th>Customer Name</th>
-                <th>Grand Total</th>
+                <th>Net Total</th>
                 <th>Paid</th>
                 <th>Due</th>
                 <th>Action</th>
@@ -36,16 +35,17 @@
                     <th> # </th>
                     <td>{{$sale->date}}</td>
                     <td>{{$sale->customer_id}}</td>
-                    <td>{{$sale->grandTotal}}</td>
+                    <td>{{$sale->netTotal}}</td>
                     <td>{{$sale->paid}}</td>
-                    <td>{{$sale->grandTotal - $sale->paid}}</td>
+                    <td>{{$sale->due }}</td>
                     <td class="has-text-right">
-                        {{-- <a class="btn btn-outline-success" href="{{route('purchase.show', $purchase->id)}}">View </a> --}}
-                        <form action="{{ route('materialPurchases.destroy',$sale->id) }}" method="POST">
+
+                        <form action="{{ route('sales.destroy',$sale->id) }}" method="POST">
+                            <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}">Invoice </a>
                             @csrf
                             @method('DELETE')
                             {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
-                            <a class="btn btn-info" href="{{route('materialPurchases.edit', $sale->id)}}"> Edit</a>
+                            <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>
                         </form>
                     </td>
                 </tr>

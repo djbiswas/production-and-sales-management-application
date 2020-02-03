@@ -210,15 +210,15 @@
                 $(this).parent().parent().remove();
                 invoice_calculate(0);
             });
-            $(document).on('change', '.pid', function(event) {
+            $(document).on('change', '.product_model_id', function(event) {
                 event.preventDefault();
-                var pid = $(this).val();
+                var product_model_id = $(this).val();
                 var tr = $(this).parent().parent();
                 $.ajax({
                     url: '/single_sell_item',
                     method: 'POST',
                     // dataType: 'json',
-                    data: {getSellSingleInfo: 1, id: pid},
+                    data: {getSellSingleInfo: 1, id: product_model_id},
                     success: function(data) {
                         console.log(data);
                         tr.find('.qaty').val(data["quantity"]);

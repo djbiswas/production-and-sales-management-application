@@ -1,10 +1,10 @@
 <tr>
     <td><b class="si_number">1</b></td>
     <td>
-        {{Form::select('pid[]', $products, null, ['class' => 'select2_op form-control pid', 'placeholder' => 'Pick a Product...', 'required']) }}
-        @if ($errors->has('customer_id'))
+        {{Form::select('product_model_id[]', $products, null, ['class' => 'select2_op form-control product_model_id', 'placeholder' => 'Pick a Product...', 'required']) }}
+        @if ($errors->has('product_model_id'))
             <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('customer_id') }}</strong>
+            <strong>{{ $errors->first('product_model_id') }}</strong>
         </span>
         @endif
     </td>
@@ -15,7 +15,7 @@
         {{Form::number('price[]', null, ['class' => 'form-control form-control-sm price', 'placeholder' => 'Price', 'step' => '0.01','required' ]) }}
     </td>
     <td>
-        {{Form::number('orderQuantity[]', null, ['class' => 'form-control form-control-sm oqty', 'placeholder' => 'Price', 'step' => '0.01','required' ]) }}
+        {{Form::number('orderQuantity[]', null, ['class' => 'form-control form-control-sm oqty', 'placeholder' => 'Order Qty', 'step' => '0.01','required' ]) }}
     </td>
     <td>
         {{Form::number('totalPrice[]', null, ['class' => 'form-control form-control-sm tprice', 'placeholder' => 'Total Price', 'step' => '0.01','required','readonly' ]) }}

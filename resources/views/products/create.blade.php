@@ -67,7 +67,7 @@
 
     {{ Form::label('model_description', 'Product Description')}}
     <div class="input-group mb-3">
-        {{ Form::textarea('model_description', null, array('class' => 'form-control', 'placeholder' => 'Product Description', 'required'  ))}}
+        {{ Form::textarea('model_description', null, array('class' => 'form-control', 'placeholder' => 'Product Description'  ))}}
     </div>
 
     <hr>
