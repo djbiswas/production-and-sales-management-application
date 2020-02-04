@@ -40,13 +40,13 @@
                     <td>{{$sale->due }}</td>
                     <td class="has-text-right">
 
-                        <form action="{{ route('sales.destroy',$sale->id) }}" method="POST">
-                            <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}">Invoice </a>
+                        <form id="deleteForm" action="{{ route('sales.destroy',$sale->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                             <button type="submit" class="btn btn-danger">Delete</button>
-                            <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>
                         </form>
+                        <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>
+                        <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}">Invoice </a>
+                        <button id="delete" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             @endforeach
@@ -64,5 +64,29 @@
 
     <script>
         $('#sales_table').DataTable();
+    </script>
+
+    <script !src="">
+        $('#delete').click(function(){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: "It will permanently deleted !",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result=> {
+                if (result.value) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    );
+                    // $("#deleteForm").submit();
+                }
+            })
+
+        });
     </script>
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
     <h2>Edit Purchases</h2>
 
-    {{ Form::model($materialPurchase, ['route' => ['materialPurchases.update', $materialPurchase->id], 'method' => 'put','enctype' => 'multipart/form-data']) }}
+    {{ Form::model($materialPurchase, ['route' => ['materialPurchases.update', $materialPurchase->id], 'method' => 'put','enctype' => 'multipart/form-data', 'id' => 'purchasesForm']) }}
     {{csrf_field()}}
 
     {{-- {{Form::label('parentcategory_id', 'Select Product')}}
@@ -63,13 +63,17 @@
     <div class="text-right">
 
         {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+
     </div>
+
     {{ Form::close() }}
 
 @endsection
 
 @section('scripts')
+
     <script>
+
         function load_bdt(){
             var bdt = 0;
             var total_amount = $("#lc").val();

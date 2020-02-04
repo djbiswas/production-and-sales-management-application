@@ -7,14 +7,12 @@
 
 
     <h2>New Invoice </h2>
-    {!!  Form::model($sales,['method' =>'PATCH', 'route' => ['sales', $sales->id]])  !!}
+    {!!  Form::model($sale,['method' =>'PATCH', 'route' => ['sales.update', $sale->id]])  !!}
 
     {{csrf_field()}}
 
     <div class="card card-accent-primary mb-3" style="background: #f9fbff">
-
         <div class="card-body text-dark">
-
             <div class="row">
                 <div class="col-lg-4 col-sm-12">
                     <!-- Customer_id Select Field -->
@@ -38,7 +36,7 @@
                 <div class="col-lg-4 col-sm-12">
                     <div class="form-group  ">
                         {{Form::label('invoice','Invoice: #') }}
-                        {{Form::text('invoice', $inv, ['class' => 'form-control', 'placeholder' => 'Invoice', 'required','readonly']) }}
+                        {{Form::text('invoice', null, ['class' => 'form-control', 'placeholder' => 'Invoice', 'required','readonly']) }}
                         @error('invoice')
                         <span>{{ $message }}</span>
                         @enderror
@@ -48,8 +46,7 @@
         </div>
 
         <div class="card-accent-primary text-dark">
-
-            {{--            <form id="sellForm" onsubmit=" return false">--}}
+            {{-- <form id="sellForm" onsubmit=" return false">--}}
             <div class="card p-4" style="background: #f9fbff">
                 <div class="table-responsive ">
                     <table style="width: 100%;">
@@ -64,6 +61,7 @@
                         </thead>
                         <tbody id="invoiceItem">
                         <!-- invoice item will show here by ajax  -->
+
                         </tbody>
                     </table>
                 </div>
@@ -171,7 +169,7 @@
         </div>
     </div>
 
-    {{ Form::close() }}
+{{ Form::close() }}
 
 @endsection
 

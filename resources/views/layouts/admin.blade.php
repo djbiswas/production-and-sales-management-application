@@ -25,7 +25,6 @@
 </head>
 
 <body>
-<div>
 <div class="wrapper">
 
     <!-- Sidebar  -->
@@ -319,6 +318,7 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.1/dist/sweetalert2.all.min.js"></script>
 
     <script>
         $(document).ready(function() {

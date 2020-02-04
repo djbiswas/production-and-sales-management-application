@@ -33,7 +33,7 @@ class SaleController extends Controller
     {
         $today = date("Ymd");
         $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
-        $inv = $today . $rand;
+        $inv = 'SST'.$today . $rand;
 
         $customers = customer::pluck('name','id');
 
@@ -128,6 +128,7 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
+        $customers = customer::pluck('name','id');
         $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->first();
         return $sale;
     }
@@ -140,8 +141,9 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
+        $customers = customer::pluck('name','id');
         $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->first();
-        return $sale;
+        return view('sales.edit',compact('sale','customers'));
     }
 
     /**
