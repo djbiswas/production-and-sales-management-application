@@ -70,6 +70,8 @@ class SaleController extends Controller
             $saleStatus = 'Complete';
         }
 
+
+
         $sale = new Sale();
         $sale->invoice = $request->invoice;
         $sale->customer_id = $request->customer_id;
@@ -109,6 +111,9 @@ class SaleController extends Controller
             $saleItem->invoice = $request->invoice;
             $saleItem->sale_id = $sale->id;
             $saleItem->product_model_id = $request->product_model_id[$i];
+            $product_name = ProductModel::where('id',$request->product_model_id[$i])->first();
+            $product_name = $product_name->product_model_name;
+            $saleItem->product_name = $product_name;
             $saleItem->orderQuantity = $request->orderQuantity[$i];
             $saleItem->price = $request->price[$i];
             $saleItem->totalPrice = $request->totalPrice[$i];
@@ -128,9 +133,8 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        $customers = customer::pluck('name','id');
-        $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->first();
-        return $sale;
+        $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->with('customer')->first();
+        return view('sales.show',compact('sale'));
     }
 
     /**

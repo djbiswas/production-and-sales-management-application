@@ -100,7 +100,7 @@
                                         <label for="discount">Discount</label>
                                     </div>
                                     <div class="col-md-7">
-                                        {{Form::number('discount_amount', 0, ['id' => 'discount_amount','class' => 'form-control form-control-sm', 'placeholder' => 'Discount Amount', 'step' => '0.01','required','readonly' ]) }}
+                                        {{Form::number('discount_amount', 0, ['id' => 'discount_amount','class' => 'form-control form-control-sm', 'placeholder' => 'Discount Amount','required','readonly' ]) }}
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                         <label for="discount">Vat & Tax %</label>
                                     </div>
                                     <div class="col-md-7">
-                                        {{Form::number('vat', 0, ['id' => 'vat','class' => 'form-control form-control-sm', 'placeholder' => 'Vat & Tax', 'step' => '0.01' ]) }}
+                                        {{Form::number('vat', 0, ['id' => 'vat','class' => 'form-control form-control-sm', 'placeholder' => 'Vat & Tax' ]) }}
                                     </div>
                                 </div>
                             </div>

@@ -160,7 +160,6 @@ class MaterialPurchaseController extends Controller
         $purchases->save();
 
 
-
         $productModel = ProductModel::find($purchases->product_model_id);
         $productModel->buyPrice = $request->total_bdt;
         $productModel->unitPrice = $request->total_bdt;
@@ -180,6 +179,6 @@ class MaterialPurchaseController extends Controller
      */
     public function destroy(MaterialPurchase $materialPurchase)
     {
-        //
+        return 'delete'.$materialPurchase->id;
     }
 }

@@ -9,7 +9,7 @@
         @endif
     </td>
     <td>
-        {{Form::number('total_quantity[]', null, ['class' => 'form-control form-control-sm qaty', 'placeholder' => 'Total Quantity', 'step' => '0.01','required','readonly' ]) }}
+        {{Form::number('total_quantity[]', null, ['class' => 'form-control form-control-sm qaty', 'placeholder' => 'Total Quantity', 'required','readonly' ]) }}
     </td>
     <td>
         {{Form::number('price[]', null, ['class' => 'form-control form-control-sm price', 'placeholder' => 'Price', 'step' => '0.01','required' ]) }}

@@ -22,6 +22,7 @@ class CreateSaleItemsTable extends Migration
             $table->unsignedBigInteger('product_model_id');
             $table->foreign('product_model_id')->references('id')
                 ->on('product_models')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('product_name');
             $table->decimal('orderQuantity',25,2);
             $table->decimal('price',25,2);
             $table->decimal('totalPrice',25,2);

@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="row">
         <div class="col">
             <h2>All Sales</h2>
@@ -38,15 +37,17 @@
                     <td>{{$sale->netTotal}}</td>
                     <td>{{$sale->paid}}</td>
                     <td>{{$sale->due }}</td>
-                    <td class="has-text-right">
+                    <td class="has-text-right text-center">
 
-                        <form id="deleteForm" action="{{ route('sales.destroy',$sale->id) }}" method="POST">
+                        <form id="deleteForm{{$sale->id}}" action="{{ route('sales.destroy',$sale->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                         </form>
-                        <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>
-                        <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}">Invoice </a>
-                        <button id="delete" class="btn btn-danger">Delete</button>
+{{--                        <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>--}}
+                        <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}" target="_blank">Invoice </a>
+
+                        <button class="delete btn btn-danger" onclick="deleteform({{$sale->id}})">Delete</button>
+
                     </td>
                 </tr>
             @endforeach
@@ -67,7 +68,7 @@
     </script>
 
     <script !src="">
-        $('#delete').click(function(){
+        function deleteform(id){
             Swal.fire({
                 icon: 'warning',
                 title: 'Are you sure?',
@@ -83,10 +84,9 @@
                         'Your file has been deleted.',
                         'success'
                     );
-                    // $("#deleteForm").submit();
+                    $("#deleteForm"+id).submit();
                 }
             })
-
-        });
+        }
     </script>
 @endsection

@@ -14,27 +14,25 @@
         </div>
     </div>
 
-
             <div class="card-content">
                 <table id="purchases" class="table is-narrow">
                     <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Product Name</th>
-                        <th>Supplier / Port</th>
-                        <th>LC</th>
-                        <th>Currency</th>
-                        <th>Duty</th>
-                        <th>Total BDT</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th>No</th>
+                            <th>Product Name</th>
+                            <th>Supplier / Port</th>
+                            <th>LC</th>
+                            <th>Currency</th>
+                            <th>Duty</th>
+                            <th>Total BDT</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
 
                     <tbody>
                     @foreach ($purchases as $purchase)
                         <tr>
-
                             <td>{{$purchase->id}} </td>
                             <td>{{$purchase->product_models->product_model_name}}</td>
                             <td>{{$purchase->suppliers->name}}</td>
@@ -43,18 +41,17 @@
                             <td>{{$purchase->duty}}</td>
                             <td>{{$purchase->total_bdt}}</td>
                             <td>{{$purchase->quantity}}</td>
-
                             <td class="has-text-right">
                                 {{-- <a class="btn btn-outline-success" href="{{route('purchase.show', $purchase->id)}}">View </a> --}}
 
-                                <form action="{{ route('materialPurchases.destroy',$purchase->id) }}" method="POST">
-
+                                <form id="deleteForm{{$purchase->id}}" action="{{ route('materialPurchases.destroy',$purchase->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
+{{--                                    <button class="delete btn btn-danger" >Delete</button>--}}
 
-                                    <a class="btn btn-info" href="{{route('materialPurchases.edit', $purchase->id)}}"> Edit</a>
                                 </form>
+                                 <button class="delete btn btn-danger" onclick="deleteform({{$purchase->id}})">Delete</button>
+                                <a class="btn btn-info" href="{{route('materialPurchases.edit', $purchase->id)}}"> Edit</a>
                             </td>
                         </tr>
                     @endforeach
@@ -72,5 +69,30 @@
 
     <script>
         $('#purchases').DataTable();
+    </script>
+
+    <script !src="">
+
+        function deleteform(id){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: "It will permanently deleted !",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result=> {
+                if (result.value) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    );
+                    $("#deleteForm"+id).submit();
+                }
+            })
+        }
+
     </script>
 @endsection

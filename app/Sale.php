@@ -15,4 +15,8 @@ class Sale extends Model
     public function sale_payments(){
         return $this->hasMany(SalePayment::class) ;
     }
+
+    public function customer(){
+        return $this->belongsTo(customer::class) ;
+    }
 }
