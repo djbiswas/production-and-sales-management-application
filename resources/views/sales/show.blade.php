@@ -18,8 +18,7 @@
                 <header>
                     <div class="row">
                         <div class="col">
-                                <img src="https://www.pasha.org.pk/wp-content/uploads/2019/07/DEMO.png" width="200" data-holder-rendered="true" />
-
+                            <img src="https://www.pasha.org.pk/wp-content/uploads/2019/07/DEMO.png" width="200" data-holder-rendered="true" />
                         </div>
                         <div class="col company-details">
                             <h2 class="name">
@@ -105,7 +104,7 @@
                         </tfoot>
 
                     </table>
-                    <div class="thanks">Thank you!</div>
+                    <div class="thanks">Signature & Seal</div>
                     <div class="notices">
                         <div>NOTICE:</div>
                         <div class="notice">Sale Product will not be returned.</div>

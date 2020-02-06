@@ -156,6 +156,16 @@
                     </li>
                 </ul>
 
+                <a href="#returnSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#returnSubmenu">Returns</a>
+                <ul class="{{ Request::path() === 'return_products' || Request::path() === 'return_products/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="returnSubmenu">
+                    <li>
+                        <a href="/sales_returns">Sale Return List</a>
+                    </li>
+                    <li>
+                        <a href="/sales_returns/create">New Return</a>
+                    </li>
+                </ul>
+
 
                 {{-- Suppliers submenu --}}
 
@@ -224,7 +234,6 @@
             </li>
         </ul>
     </nav>
-
 
     <!-- Page Content  -->
     <div id="content">

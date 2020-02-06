@@ -32,6 +32,8 @@ Route::resource('/taxCategories', 'TaxCategoryController');
 Route::resource('/stockUnits', 'StockUnitController');
 Route::resource('/lcs', 'LcController');
 Route::resource('/sales', 'SaleController');
+Route::resource('/sales_returns', 'SalesReturnController');
+Route::get('/sr_form/{id}', 'SalesReturnController@sr_form')->name('sales_returns.sr_form');
 
 //Route::get('/sales_item', 'SalesController@sales_item')->name('sales_item');
 //Route::get('/get-products', 'SalesController@getProducts');
