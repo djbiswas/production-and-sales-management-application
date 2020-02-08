@@ -44,10 +44,10 @@
                     <td class="total">{{$sale_item->totalPrice}}</td>
                     <td class="form">
                         <div class="input-group mb-3">
-                            {{Form::number('product_model_id[]', $sale_item->product_model_id, array('class' => 'form-control', 'required','hidden'  ))}}
+                            {{Form::number('product_model_id[]', $sale_item->product_model_id, array('class' => 'form-control', 'required','hidden' ))}}
                             {{Form::number('sale_id[]', $sale->id, array('class' => 'form-control', 'required','hidden'  ))}}
                             {{Form::number('sale_item_id[]', $sale_item->id, array('class' => 'form-control', 'required','hidden'  ))}}
-                            {{Form::number('qty[]', null, array('class' => 'form-control', 'placeholder' => 'Quantity', 'required'  ))}}
+                            {{Form::number('qty[]', null, array('max' => $sale_item->orderQuantity, 'class' => 'form-control', 'placeholder' => 'Quantity', 'required'  ))}}
                         </div>
                     </td>
                 </tr>
@@ -55,6 +55,27 @@
         </tbody>
 
     </table>
+
+    <div class="row">
+        <div class="col-lg-8"></div>
+
+        <div class="col">
+        {{Form::text('customer_id', $sale->customer->id, ['class' => 'form-control', 'placeholder' => '', 'required', 'hidden']) }}
+            <!-- Date Input Form -->
+            <div class="form-group">
+                {{Form::label('date','Date:') }}
+                {{Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+            </div>
+
+            <!-- Amount Input Form -->
+            <div class="form-group">
+                {{Form::label('amount','Amount:') }}
+                {{Form::number('amount', null, ['class' => 'form-control', 'placeholder' => 'Amount', 'required']) }}
+            </div>
+
+        </div>
+    </div>
+
     <hr>
     {{ Form::close() }}
     <div class="text-right">
@@ -91,8 +112,6 @@
             })
         }
 
-
     </script>
-
 
 @endsection

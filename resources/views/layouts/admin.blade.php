@@ -236,7 +236,7 @@
     </nav>
 
     <!-- Page Content  -->
-    <div id="content">
+    <div id="content" >
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
@@ -277,7 +277,7 @@
             </div>
         </nav>
 
-        <div id="content-main">
+        <div id="content-main" style="min-height: calc(100vh - 165px);">
 
             @include('flash::message')
             @if ($errors->any())
@@ -292,6 +292,19 @@
             @yield('content')
 
         </div>
+
+        <!-- Footer -->
+        <footer class="page-footer font-small" style="background: #e9ecef">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3 ">© 2020 Copyright:
+                <a href="http://softxltd.com/"> SoftxLtd.com</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+
 
     </div>
 </div>

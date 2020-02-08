@@ -20,7 +20,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::get();
+        $sales = Sale::with('customer')->get();
         return view('sales.index', compact('sales'));
     }
 

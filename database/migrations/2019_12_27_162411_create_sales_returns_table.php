@@ -15,19 +15,20 @@ class CreateSalesReturnsTable extends Migration
     {
         Schema::create('sales_returns', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->unsignedBigInteger('product_model_id');
-            $table->foreign('product_model_id')->references('id')
-                ->on('product_models')->onUpdate('cascade')->onDelete('cascade');
+            $table->date('date');
 
             $table->unsignedBigInteger('sale_id');
             $table->foreign('sale_id')->references('id')
                 ->on('sales')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('sale_item_id');
-            $table->foreign('sale_item_id')->references('id')
-                ->on('sale_items')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('qty');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')
+                ->on('customers')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->integer('items');
+            $table->integer('qty')->nullable();
+            $table->decimal('amount');
+
             $table->timestamps();
         });
     }

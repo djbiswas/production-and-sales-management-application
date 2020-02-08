@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSaleItemsTable extends Migration
+class CreateSalesReturnItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,22 @@ class CreateSaleItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sale_items', function (Blueprint $table) {
+        Schema::create('sales_return_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('invoice');
-            $table->unsignedBigInteger('sale_id');
-            $table->foreign('sale_id')->references('id')
-                ->on('sales')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unsignedBigInteger('sales_return_id');
+            $table->foreign('sales_return_id')->references('id')
+                ->on('sales_returns')->onUpdate('cascade')->onDelete('cascade');
+
             $table->unsignedBigInteger('product_model_id');
             $table->foreign('product_model_id')->references('id')
                 ->on('product_models')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('product_name');
-            $table->integer('orderQuantity');
-            $table->decimal('price',25,2);
-            $table->decimal('totalPrice',25,2);
-            $table->string('status')->default('0');
+
+            $table->unsignedBigInteger('sale_item_id');
+            $table->foreign('sale_item_id')->references('id')
+                ->on('sale_items')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->integer('qty');
             $table->timestamps();
         });
     }
@@ -38,6 +40,6 @@ class CreateSaleItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sale_items');
+        Schema::dropIfExists('sales_return_items');
     }
 }

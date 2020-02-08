@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\ProductModel;
 use App\Sale;
+use App\SaleItem;
 use App\SalesReturn;
+use App\SalesReturnItem;
 use Illuminate\Http\Request;
 
 class SalesReturnController extends Controller
@@ -16,7 +18,8 @@ class SalesReturnController extends Controller
      */
     public function index()
     {
-        return 'ttt';
+        $returns = SalesReturn::with('sale')->with('customer')->get();
+        return view('sales_returns.index',compact('returns'));
     }
 
     /**
@@ -47,33 +50,56 @@ class SalesReturnController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'date' => 'required',
             'product_model_id' => 'required',
             'sale_id' => 'required',
+            'customer_id' => 'required',
             'sale_item_id' => 'required',
             'qty' => 'required',
+            'amount' => 'required'
         ]);
 
+        $salesreturn = new SalesReturn();
+        $salesreturn->date = $request->date;
+        $salesreturn->sale_id = $request->sale_id[0];
+        $salesreturn->customer_id = $request->customer_id;
+        $salesreturn->items = count($request->sale_id);
+        $salesreturn->amount = $request->amount;
+        $salesreturn->save();
+
+        $sales = Sale::find($request->sale_id[0]);
+        $sales->status = 'Return';
+        $sales->save();
+
         for ($i=0; $i <count($request->sale_id) ; $i++) {
+            $salesreturnitem = new SalesReturnItem();
+            $salesreturnitem->sales_return_id = $salesreturn->id;
+            $salesreturnitem->product_model_id = $request->product_model_id[$i];
+            $salesreturnitem->sale_item_id = $request->sale_item_id[$i];
+            $salesreturnitem->qty = $request->qty[$i];
 
-            $salereturn = new SalesReturn();
-            $salereturn->product_model_id = $request->product_model_id[$i];
-            $salereturn->sale_id = $request->sale_id[$i];
-            $salereturn->sale_item_id = $request->sale_item_id[$i];
-            $salereturn->qty = $request->qty[$i];
-            $salereturn->save();
+            if ($request->qty[$i] != ''){
 
-            $product = ProductModel::where('id', $request->product_model_id[$i])->first();
-            $qty = $product->quantity;
-            $qty = $qty + $request->qty[$i];
+                $salesreturnitem->save();
 
-            $productModel = ProductModel::find($request->product);
-            $productModel->buyPrice = $request->total_bdt;
-            $productModel->unitPrice = $request->total_bdt;
-            $productModel->quantity = $qty;
-            $productModel->save();
+                $sale = Sale::find($request->sale_id[$i]);
+                $sale->status = 'Returned';
+                $product = ProductModel::where('id', $request->product_model_id[$i])->first();
+                $qty = $product->quantity;
+                $qty = $qty + $request->qty[$i];
+                $productModel = ProductModel::find($request->product_model_id[$i]);
+                $productModel->quantity = $qty;
+                $productModel->save();
+
+                $sale_item = SaleItem::find($request->sale_item_id[$i]);
+                $sale_item->status = 1;
+                $sale_item->save();
+            }
+
         }
 
-        return $request->all();
+        flash('Product Return Success')->success();
+        return redirect()->route('sales_returns.index');
     }
 
     /**
@@ -84,7 +110,9 @@ class SalesReturnController extends Controller
      */
     public function show(SalesReturn $salesReturn)
     {
-        //
+        $salesReturn = SalesReturn::where('id',$salesReturn->id)->with('sale')->with('customer')->with('salesReturnItem')->first();
+        $returnItems = SalesReturnItem::where('sales_return_id',$salesReturn->id)->with('productModel')->get();
+        return view('sales_returns.show',compact('salesReturn','returnItems'));
     }
 
     /**

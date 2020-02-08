@@ -4,12 +4,12 @@
 
     <div class="row">
         <div class="col">
-            <h2>All Sales</h2>
+            <h2>Sales Return List</h2>
         </div>
-        <div class="col text-right">
 
-            <a href="{{route('sales.create')}}" class="btn btn-primary">
-                <i class="mdi mdi-account-edit"></i> New Sales</a>
+        <div class="col text-right">
+            <a href="{{route('sales_returns.create')}}" class="btn btn-primary">
+                <i class="mdi mdi-account-edit"></i> New Return</a>
         </div>
     </div>
 
@@ -20,33 +20,33 @@
             <tr>
                 <th>No</th>
                 <th>Date</th>
+                <th>Invoice</th>
                 <th>Customer Name</th>
-                <th>Net Total</th>
-                <th>Paid</th>
-                <th>Due</th>
+                <th>Total Items</th>
+                <th>Amount</th>
                 <th>Action</th>
             </tr>
             </thead>
 
             <tbody>
-            @foreach ($sales as $sale)
+            @foreach ($returns as $return)
                 <tr>
                     <th> # </th>
-                    <td>{{$sale->date}}</td>
-                    <td>{{$sale->customer->name}}</td>
-                    <td>{{$sale->netTotal}}</td>
-                    <td>{{$sale->paid}}</td>
-                    <td>{{$sale->due }}</td>
+                    <td>{{$return->date}}</td>
+                    <td>{{$return->sale->invoice}}</td>
+                    <td>{{$return->customer->name}}</td>
+                    <td>{{$return->items}}</td>
+                    <td>{{$return->amount}}</td>
                     <td class="has-text-right text-center">
 
-                        <form id="deleteForm{{$sale->id}}" action="{{ route('sales.destroy',$sale->id) }}" method="POST">
+                        <form id="deleteForm{{$return->id}}" action="{{ route('sales.destroy',$return->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                         </form>
-{{--                        <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>--}}
-                        <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}" target="_blank">Invoice </a>
+{{--                        <a class="btn btn-info" href="{{route('sales_returns.edit', $return->id)}}"> Edit</a>--}}
+                        <a class="btn btn-success" href="{{route('sales_returns.show', $return->id)}}" target="_blank">Invoice </a>
 
-                        <button class="delete btn btn-danger" onclick="deleteform({{$sale->id}})">Delete</button>
+{{--                        <button class="delete btn btn-danger" onclick="deleteform({{$return->id}})">Delete</button>--}}
 
                     </td>
                 </tr>

@@ -8,8 +8,8 @@
         </div>
         <div class="col text-right">
 
-            <a href="{{route('sales.create')}}" class="btn btn-primary">
-                <i class="mdi mdi-account-edit"></i> New Sales</a>
+            <a href="{{route('sales_returns.index')}}" class="btn btn-primary">
+                <i class="mdi mdi-account-edit"></i> Return List</a>
         </div>
     </div>
 
@@ -20,6 +20,7 @@
             <tr>
                 <th>No</th>
                 <th>Date</th>
+                <th>Invoice</th>
                 <th>Customer Name</th>
                 <th>Net Total</th>
                 <th>Paid</th>
@@ -33,6 +34,7 @@
                 <tr>
                     <th> # </th>
                     <td>{{$sale->date}}</td>
+                    <td>{{$sale->invoice}}</td>
                     <td>{{$sale->customer_id}}</td>
                     <td>{{$sale->netTotal}}</td>
                     <td>{{$sale->paid}}</td>
