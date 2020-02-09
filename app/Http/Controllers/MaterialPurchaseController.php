@@ -55,6 +55,7 @@ class MaterialPurchaseController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'date' => 'sometimes',
             'product' => 'sometimes',
             'supplier' => 'required',
             'currency' => 'sometimes|max:255',
@@ -68,6 +69,7 @@ class MaterialPurchaseController extends Controller
         $unit_price = $request->total_bdt_amount / $request->quantity;
 
         $purchases = new MaterialPurchase();
+        $purchases->date = $request->date;
         $purchases->product_model_id = $request->product;
         $purchases->supplier_id = $request->supplier;
         $purchases->user_id = Auth::user()->id;
@@ -131,6 +133,7 @@ class MaterialPurchaseController extends Controller
     public function update(Request $request, MaterialPurchase $materialPurchase)
     {
         $this->validate($request, [
+            'date' => 'sometimes',
             'product' => 'sometimes',
             'supplier' => 'required',
             'currency' => 'sometimes|max:255',
@@ -149,6 +152,7 @@ class MaterialPurchaseController extends Controller
 
         $unit_price = $request->total_bdt_amount / $request->quantity;
         $purchases = MaterialPurchase::find($materialPurchase->id);
+        $purchases->date = $request->date;
         $purchases->product_model_id = $request->product;
         $purchases->supplier_id = $request->supplier;
         $purchases->currency = $request->currency;

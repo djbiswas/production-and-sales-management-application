@@ -38,5 +38,17 @@ Route::get('/sr_form/{id}', 'SalesReturnController@sr_form')->name('sales_return
 //Route::get('/sales_item', 'SalesController@sales_item')->name('sales_item');
 //Route::get('/get-products', 'SalesController@getProducts');
 
+Route::get('/sales_report', 'Report@sales_report');
+Route::get('get_sales_data', 'Report@get_sales_data')->name('get_sales_data');
+
+Route::get('/purchases_report', 'Report@purchases_report');
+Route::get('get_purchases_data', 'Report@get_purchases_data')->name('get_purchases_data');
+
+
+Route::get('/stock_report', 'Report@stock_report');
+Route::get('get_stock_data', 'Report@get_stock_data')->name('get_stock_data');
+
+Route::get('/customer_report', 'Report@customer_report');
+
 Route::post('/addNewRow', 'SaleController@addNewRow');
 Route::post('/single_sell_item', 'SaleController@single_sell_item');

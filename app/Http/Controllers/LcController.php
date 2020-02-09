@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BankAccount;
 use App\Lc;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class LcController extends Controller
      */
     public function create()
     {
-        return view('lcs.create');
+        $banks = BankAccount::pluck('name','id');
+        return view('lcs.create',compact('banks'));
     }
 
     /**

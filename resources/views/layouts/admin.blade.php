@@ -10,6 +10,7 @@
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet" media='screen,print'>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" media='screen,print'>
@@ -197,15 +198,18 @@
                 {{-- Reports submenu --}}
 
                 <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#reportSubmenu" >Reports</a>
-                <ul class="{{ Request::path() === 'materialPurchases' || Request::path() === 'customers' || Request::path() === 'suppliers' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="reportSubmenu">
+                <ul class="{{ Request::path() === 'sales_report' || Request::path() === 'purchases_report'|| Request::path() === 'stock_report'|| Request::path() === 'customer_report'}}collapse list-unstyled" data-parent="#accordionExample" id="reportSubmenu">
                     <li>
-                        <a href="/materialPurchases">Purchase</a>
+                        <a href="/sales_report">Sales Report</a>
                     </li>
                     <li>
-                        <a href="/customers">Customers</a>
+                        <a href="/purchases_report">Purchase</a>
                     </li>
                     <li>
-                        <a href="/suppliers">Suppliers</a>
+                        <a href="/stock_report">Stock Report</a>
+                    </li>
+                    <li>
+{{--                        <a href="/customer_report">Customers</a>--}}
                     </li>
 
                 </ul>

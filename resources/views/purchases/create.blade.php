@@ -11,13 +11,20 @@
     </div> --}}
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-4">
+            <!-- Date Input Form -->
+            <div class="form-group">
+                {{Form::label('date','Date:') }}
+                {{Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+            </div>
+        </div>
+        <div class="col-4">
             {{Form::label('product', 'Select Product')}}
             <div class="form-group mb-3">
                 {{Form::select('product', $products, null, ['class' => 'select2_op form-control', 'required'])}}
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-4">
             {{Form::label('supplier', 'Select Supplier / Port')}}
             <div class="form-group mb-3">
                 {{Form::select('supplier', $suppliers, null, ['class' => 'select2_op form-control', 'required'])}}

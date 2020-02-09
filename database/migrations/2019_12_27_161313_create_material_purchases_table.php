@@ -15,6 +15,7 @@ class CreateMaterialPurchasesTable extends Migration
     {
         Schema::create('material_purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->date('date');
 
             $table->unsignedBigInteger('product_model_id');
             $table->unsignedBigInteger('supplier_id');

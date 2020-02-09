@@ -20,6 +20,7 @@
             <tr>
                 <th>No</th>
                 <th>Date</th>
+                <th>Invoice</th>
                 <th>Customer Name</th>
                 <th>Net Total</th>
                 <th>Paid</th>
@@ -33,6 +34,7 @@
                 <tr>
                     <th> # </th>
                     <td>{{$sale->date}}</td>
+                    <td>{{$sale->invoice}}</td>
                     <td>{{$sale->customer->name}}</td>
                     <td>{{$sale->netTotal}}</td>
                     <td>{{$sale->paid}}</td>
