@@ -7,7 +7,6 @@
             <h2>Lc List</h2>
         </div>
         <div class="col text-right">
-
             <a href="{{route('lcs.create')}}" class="btn btn-primary">
                 <i class="mdi mdi-account-edit"></i> New Lc</a>
         </div>
@@ -18,8 +17,11 @@
             <thead>
             <tr>
                 <th>No</th>
+                <th>Date</th>
                 <th>Lc Name</th>
-                <th>Lc Note</th>
+                <th>Lc Bank</th>
+                <th>Amount</th>
+                <th>price</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -27,10 +29,13 @@
             <tbody>
             @foreach ($lcs as $lc)
                 <tr>
-
                     <th>{{$lc->id}} </th>
+                    <th>{{$lc->date}} </th>
                     <td>{{$lc->name}}</td>
-                    <td>{{$lc->note}}</td>
+                    <td>{{$lc->banksAccount->name}}</td>
+                    <td>{{$lc->amount}}</td>
+                    <td>{{$lc->price}}</td>
+
 
 
                     <td class="has-text-right">

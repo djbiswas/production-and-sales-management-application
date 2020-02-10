@@ -14,7 +14,8 @@ class BankAccountController extends Controller
      */
     public function index()
     {
-        //
+        $banks = BankAccount::get();
+        return view('bankAccounts.index',compact('banks'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BankAccountController extends Controller
      */
     public function create()
     {
-        //
+        return view('bankAccounts.create');
     }
 
     /**
@@ -35,7 +36,21 @@ class BankAccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'branch' => 'required'
+
+        ]);
+
+        $bankAccount = New BankAccount();
+        $bankAccount->name = $request->name;
+        $bankAccount->branch = $request->branch;
+
+        $bankAccount->save();
+
+        flash('New Bank Add Success')->success();
+
+        return redirect()->route('bankAccounts.index');
     }
 
     /**
@@ -57,7 +72,7 @@ class BankAccountController extends Controller
      */
     public function edit(BankAccount $bankAccount)
     {
-        //
+        return view('bankAccounts.edit',compact('bankAccount'));
     }
 
     /**
@@ -69,7 +84,18 @@ class BankAccountController extends Controller
      */
     public function update(Request $request, BankAccount $bankAccount)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'branch' => 'required'
+
+        ]);
+        $bankAccount->name = $request->name;
+        $bankAccount->branch = $request->branch;
+        $bankAccount->save();
+
+        flash('Bank Account Update Success')->success();
+
+        return redirect()->route('bankAccounts.index');
     }
 
     /**

@@ -15,7 +15,13 @@ class CreateLcsTable extends Migration
     {
         Schema::create('lcs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->date('date');
             $table->string('name');
+            $table->unsignedBigInteger('bank_account_id');
+            $table->foreign('bank_account_id')->references('id')
+                ->on('bank_accounts')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('amount');
+            $table->decimal('price',25,2);
             $table->string('note');
             $table->timestamps();
         });

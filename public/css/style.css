@@ -14,6 +14,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+
 /* Firefox */
 input[type=number] {
     -moz-appearance:textfield;
@@ -21,4 +22,8 @@ input[type=number] {
 
 .select2.select2-container.select2-container--default {
     width: 100% !important;
+}
+
+.jumbotron {
+    background-color: #f8f9fa;
 }

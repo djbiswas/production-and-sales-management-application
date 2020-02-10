@@ -15,7 +15,7 @@ class LcController extends Controller
      */
     public function index()
     {
-        $lcs = Lc::get();
+        $lcs = Lc::with('banksAccount')->get();
         return view('lcs.index',compact('lcs'));
     }
 
@@ -39,16 +39,24 @@ class LcController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'date' => 'required',
             'name' => 'required',
+            'bank_account_id' => 'required',
+            'amount' => 'sometimes',
+            'price' => 'sometimes',
             'note' => 'sometimes'
 
         ]);
 
-        $stockUnit = New Lc();
-        $stockUnit->name = $request->name;
-        $stockUnit->note = $request->note;
+        $lc = New Lc();
+        $lc->date = $request->date;
+        $lc->name = $request->name;
+        $lc->bank_account_id = $request->bank_account_id;
+        $lc->amount = $request->amount;
+        $lc->price = $request->amount;
+        $lc->note = $request->note;
 
-        $stockUnit->save();
+        $lc->save();
 
         flash('New LC Add Success')->success();
 
@@ -74,7 +82,8 @@ class LcController extends Controller
      */
     public function edit(Lc $lc)
     {
-        return view('lcs.edit',compact('lc'));
+        $banks = BankAccount::pluck('name','id');
+        return view('lcs.edit',compact('lc','banks'));
     }
 
     /**
@@ -87,16 +96,23 @@ class LcController extends Controller
     public function update(Request $request, Lc $lc)
     {
         $this->validate($request, [
+            'date' => 'required',
             'name' => 'required',
+            'bank_account_id' => 'required',
+            'amount' => 'sometimes',
+            'price' => 'sometimes',
             'note' => 'sometimes'
 
         ]);
 
-        $stockUnit = Lc::find($lc->id);
-        $stockUnit->name = $request->name;
-        $stockUnit->note = $request->note;
+        $lc->date = $request->date;
+        $lc->name = $request->name;
+        $lc->bank_account_id = $request->bank_account_id;
+        $lc->amount = $request->amount;
+        $lc->price = $request->amount;
+        $lc->note = $request->note;
 
-        $stockUnit->save();
+        $lc->save();
 
         flash('LC Update Success')->success();
 

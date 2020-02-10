@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 
 
+Route::resource('/bankAccounts', 'BankAccountController');
 Route::resource('/suppliers', 'SupplierController');
 Route::resource('/productModels', 'ProductModelController');
 Route::resource('/materialPurchases', 'MaterialPurchaseController');

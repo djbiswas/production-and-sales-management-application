@@ -7,6 +7,7 @@ use App\ProductModel;
 use App\Supplier;
 use App\Currency;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MaterialPurchaseController extends Controller
 {

@@ -103,6 +103,17 @@
                     </li>
                 </ul>
 
+                {{-- Banks list submenu --}}
+
+                <a href="#bankSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#bankSubmenu" >Bank Accounts </a>
+                <ul class="{{ Request::path() === 'bankAccounts' || Request::path() === 'bankAccounts/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="bankSubmenu">
+                    <li>
+                        <a href="/bankAccounts">Bank Account List</a>
+                    </li>
+                    <li>
+                        <a href="/bankAccounts/create">Add New Bank Account</a>
+                    </li>
+                </ul>
 
 
                 {{-- LC list submenu --}}
