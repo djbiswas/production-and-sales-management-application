@@ -20,7 +20,8 @@ class CreateLcsTable extends Migration
             $table->unsignedBigInteger('bank_account_id');
             $table->foreign('bank_account_id')->references('id')
                 ->on('bank_accounts')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('amount');
+            $table->decimal('amount',25,2);
+            $table->decimal('av_qty',25,2);
             $table->decimal('price',25,2);
             $table->string('note');
             $table->timestamps();

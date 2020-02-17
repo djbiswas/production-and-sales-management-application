@@ -13,6 +13,12 @@ class LcController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $lcs = Lc::with('banksAccount')->get();
@@ -53,7 +59,8 @@ class LcController extends Controller
         $lc->name = $request->name;
         $lc->bank_account_id = $request->bank_account_id;
         $lc->amount = $request->amount;
-        $lc->price = $request->amount;
+        $lc->av_qty = $request->amount;
+        $lc->price = $request->price;
         $lc->note = $request->note;
 
         $lc->save();
@@ -100,6 +107,7 @@ class LcController extends Controller
             'name' => 'required',
             'bank_account_id' => 'required',
             'amount' => 'sometimes',
+            'av_qty' => 'sometimes',
             'price' => 'sometimes',
             'note' => 'sometimes'
 
@@ -109,7 +117,8 @@ class LcController extends Controller
         $lc->name = $request->name;
         $lc->bank_account_id = $request->bank_account_id;
         $lc->amount = $request->amount;
-        $lc->price = $request->amount;
+        $lc->av_qty = $request->amount;
+        $lc->price = $request->price;
         $lc->note = $request->note;
 
         $lc->save();

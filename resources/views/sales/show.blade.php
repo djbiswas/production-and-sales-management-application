@@ -15,10 +15,10 @@
         </div>
         <div id="printDiv" class="invoice overflow-auto">
             <div style="min-width: 600px">
-                <header>
+                <header class="logoh">
                     <div class="row">
                         <div class="col">
-                            <img src="https://www.pasha.org.pk/wp-content/uploads/2019/07/DEMO.png" width="200" data-holder-rendered="true" />
+                            <img src="/sst.jpg" width="200" data-holder-rendered="true" />
                         </div>
                         <div class="col company-details">
                             <h2 class="name">
@@ -41,7 +41,8 @@
                         <div class="col invoice-details">
                             <h1 class="invoice-id"># {{$sale->invoice}}</h1>
                             <div class="date">Date of Invoice: {{$sale->date}}</div>
-{{--                            <div class="date">Due Date: 30/10/2018</div>--}}
+                         <div class="date">Shipping Address: {{$sale->shipping_address}}</div>
+
                         </div>
                     </div>
                     <table border="0" cellspacing="0" cellpadding="0">
@@ -49,6 +50,7 @@
                             <tr>
                                 <th>#</th>
                                 <th class="text-left" style="width: 55%;">PRODUCT NAME</th>
+                                <th class="text-left" style="">TRUCK NUMBER</th>
                                 <th class="text-right">UNIT PRICE</th>
                                 <th class="text-right">QUANTITY</th>
                                 <th class="text-right">TOTAL PRICE</th>
@@ -60,6 +62,7 @@
                             <tr>
                                 <td class="no">{{++$i}}</td>
                                 <td class="text-left">{{$sale_item->product_name}}</td>
+                                <td class="text-left truck">{{$sale_item->track_number}}</td>
                                 <td class="unit">{{$sale_item->price}}</td>
                                 <td class="qty">{{$sale_item->orderQuantity}}</td>
                                 <td class="total">{{$sale_item->totalPrice}}</td>
@@ -71,32 +74,32 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="2"></td>
+                                <td colspan="3"></td>
                                 <td colspan="2">SUBTOTAL</td>
                                 <td>{{$sale->subtotal}}</td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
+                                <td colspan="3"></td>
                                 <td colspan="2">TAX {{$sale->vat}} %</td>
                                 <td>{{($sale->subtotal / 100)*$sale->vat}}</td>
                             </tr>
                             <tr class="">
-                                <td colspan="2"></td>
+                                <td colspan="3"></td>
                                 <td colspan="2">DISCOUNT {{$sale->discount}} %</td>
                                 <td><span class="text-danger">(-{{($sale->subtotal / 100)*$sale->discount}})</span></td>
                             </tr>
                             <tr class="gtotal">
-                                <td colspan="2"></td>
+                                <td colspan="3"></td>
                                 <td colspan="2">GRAND TOTAL</td>
                                 <td>{{$sale->netTotal}}</td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
+                                <td colspan="3"></td>
                                 <td colspan="2">PAID</td>
                                 <td>{{$sale->paid}}</td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
+                                <td colspan="3"></td>
                                 <td colspan="2">DUE</td>
                                 <td>{{$sale->due}}</td>
                             </tr>
@@ -110,9 +113,9 @@
                         <div class="notice">Sale Product will not be returned.</div>
                     </div>
                 </main>
-                <footer>
-                    SoftxLtd
-                </footer>
+{{--                <footer>--}}
+{{--                    SoftxLtd--}}
+{{--                </footer>--}}
             </div>
             <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
             <div></div>

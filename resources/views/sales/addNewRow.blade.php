@@ -1,6 +1,9 @@
 <tr>
     <td><b class="si_number">1</b></td>
     <td>
+        {{Form::text('track_number[]', null, ['class' => 'form-control form-control-sm', 'placeholder' => 'Truck Number', 'required' ]) }}
+    </td>
+    <td>
         {{Form::select('product_model_id[]', $products, null, ['class' => 'select2_op form-control product_model_id', 'placeholder' => 'Pick a Product...', 'required']) }}
         @if ($errors->has('product_model_id'))
             <span class="invalid-feedback" role="alert">

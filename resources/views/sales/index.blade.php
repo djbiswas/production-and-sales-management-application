@@ -48,7 +48,7 @@
 {{--                        <a class="btn btn-info" href="{{route('sales.edit', $sale->id)}}"> Edit</a>--}}
                         <a class="btn btn-success" href="{{route('sales.show', $sale->id)}}" target="_blank">Invoice </a>
 
-                        <button class="delete btn btn-danger" onclick="deleteform({{$sale->id}})">Delete</button>
+{{--                        <button class="delete btn btn-danger" onclick="deleteform({{$sale->id}})">Delete</button>--}}
 
                     </td>
                 </tr>

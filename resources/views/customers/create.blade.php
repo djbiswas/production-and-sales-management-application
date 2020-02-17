@@ -12,7 +12,7 @@
 
     {{Form::label('phone', 'Phone')}}
     <div class="input-group mb-3">
-        {{Form::text('phone', null, array('class' => 'form-control', 'placeholder' => 'Phone Number', 'required'  ))}}
+        {{Form::text('phone', null, array('class' => 'form-control', 'placeholder' => 'Phone Number', 'maxlength' => '11','required'  ))}}
     </div>
 
     {{Form::label('email', 'Email')}}

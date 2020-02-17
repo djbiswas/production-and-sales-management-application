@@ -45,24 +45,24 @@
             <th>Supplier / Port</th>
             <th>LC</th>
             <th>Currency</th>
-            <th>Duty</th>
+            <th>Other Costs</th>
             <th>Total BDT</th>
             <th>Quantity</th>
         </tr>
         </thead>
 
         <tfoot>
-        <tr>
-            <th>No</th>
-            <th>Date</th>
-            <th>Product Name</th>
-            <th>Supplier / Port</th>
-            <th>LC</th>
-            <th>Currency</th>
-            <th>Duty</th>
-            <th>Total BDT</th>
-            <th>Quantity</th>
-        </tr>
+            <tr>
+                <th>No</th>
+                <th>Date</th>
+                <th>Product Name</th>
+                <th>Supplier / Port</th>
+                <th>LC</th>
+                <th>Currency</th>
+                <th>Other Costs</th>
+                <th>Total BDT</th>
+                <th>Quantity</th>
+            </tr>
         </tfoot>
     </table>
 @endsection
@@ -145,7 +145,7 @@
                         { data: 'suppliers.name', name: 'suppliers.name' },
                         { data: 'lc', name: 'lc' },
                         { data: 'currency', name: 'currency'},
-                        { data: 'duty', name: 'duty', className: 'sum' },
+                        { data: 'other_costs', name: 'other_costs', className: 'sum' },
                         { data: 'quantity', name: 'quantity', className: 'sum' },
                         { data: 'total_bdt', name: 'total_bdt', className: 'sum' }
                     ],

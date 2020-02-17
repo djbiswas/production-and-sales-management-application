@@ -18,7 +18,7 @@
                 <div class="col-lg-4 col-sm-12">
                     <!-- Customer_id Select Field -->
                     <div class="form-group  ">
-                        {{Form::label('customer_id','Customer_id:') }}
+                        {{Form::label('customer_id','Select Customer:') }}
                         {{Form::select('customer_id', $customers, null, ['class' => 'select2_op form-control','id' => 'customer_id', 'placeholder' => 'Pick a Customer...', 'required']) }}
                         @if ($errors->has('customer_id'))
                             <span class="invalid-feedback" role="alert">
@@ -43,8 +43,24 @@
                         @enderror
                     </div>
                 </div>
+
+                <!-- Shipping Address Input Form -->
+                <div class="form-group col-12">
+                    {{Form::label('shipping_address','Shipping Address:') }}
+
+                    {{Form::text('shipping_address', null, ['class' => 'form-control', 'placeholder' => 'Shipping Address', 'required']) }}
+
+                    @error('shipping_address')
+                    <span>{{ $message }}</span>
+                    @enderror
+
+                </div>
+
             </div>
         </div>
+
+
+
 
         <div class="card-accent-primary text-dark">
 
@@ -54,11 +70,12 @@
                         <table style="width: 100%;">
                             <thead>
                                 <th style="width: 2%">#</th>
-                                <th style="width: 18%">Product Name</th>
-                                <th style="width: 18%">Available Stock</th>
-                                <th style="width: 18%">Unit Price</th>
-                                <th style="width: 18%">Order Quantity</th>
-                                <th style="width: 18%">Total Price</th>
+                                <th style="width: 16%">Truck Number </th>
+                                <th style="width: 16%">Product Name</th>
+                                <th style="width: 16%">Available Stock</th>
+                                <th style="width: 16%">Unit Price</th>
+                                <th style="width: 16%">Order Quantity</th>
+                                <th style="width: 16%">Total Price</th>
                                 <th style="width: 2%">Action</th>
                             </thead>
                             <tbody id="invoiceItem">
@@ -110,7 +127,7 @@
                                         <label for="discount">Vat & Tax %</label>
                                     </div>
                                     <div class="col-md-7">
-                                        {{Form::number('vat', 0, ['id' => 'vat','class' => 'form-control form-control-sm', 'placeholder' => 'Vat & Tax' ]) }}
+                                        {{Form::number('vat', 15, ['id' => 'vat','class' => 'form-control form-control-sm', 'placeholder' => 'Vat & Tax' ]) }}
                                     </div>
                                 </div>
                             </div>
@@ -246,18 +263,22 @@
                 var set_sub_total = 0;
                 var net_total = 0;
                 var vat =  $('#vat').val();
-                var make_vat = (set_sub_total / 100) * vat;
+
                 var discount = dis;
+
 
                 $('.tprice').each(function() {
                     set_sub_total = set_sub_total + ($(this).val() * 1);
                     //$('#vat').val(make_vat);
-                    $('#netTotal').val(net_total.toFixed(2));
+
+                    //$('#netTotal').val(net_total.toFixed(2));
                 });
 
-                var make_discount = (set_sub_total / 100) * discount;
+                // var make_discount = (set_sub_total / 100) * discount;
+                var make_discount = discount;
+                var make_vat = (set_sub_total / 100) * vat;
 
-                $('#discount_amount').val(make_discount.toFixed(2));
+                $('#discount_amount').val(make_discount);
                 net_total = (set_sub_total - make_discount) + make_vat;
                 $('#subtotal').val(set_sub_total);
                 $('#netTotal').val(net_total.toFixed(2));

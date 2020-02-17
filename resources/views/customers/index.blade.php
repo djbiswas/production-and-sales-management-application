@@ -47,6 +47,7 @@
                             {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
 
                             <a class="btn btn-info" href="{{route('customers.edit', $customer->id)}}"> Edit</a>
+                            <a class="btn btn-success" href="{{route('customer_pay', $customer->id)}}"> Payment</a>
                         </form>
                     </td>
                 </tr>

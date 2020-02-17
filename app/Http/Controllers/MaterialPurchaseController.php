@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Lc;
 use App\MaterialPurchase;
 use App\ProductModel;
 use App\Supplier;
@@ -33,12 +34,21 @@ class MaterialPurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function get_lc(Request $request){
+        $id = $request->lc_id;
+        $lc = Lc::where('id',$id)->first();
+        return $lc;
+    }
+
+
     public function create()
     {
         $products = ProductModel::pluck('product_model_name', 'id');
         $suppliers = Supplier::pluck('name', 'id');
         $currencies = Currency::pluck('name', 'value');
-        return view('purchases.create')->with(compact('products','suppliers','currencies'));
+        $lcs = Lc::pluck('name', 'id');
+        return view('purchases.create')->with(compact('products','suppliers','currencies','lcs'));
 
     }
 
@@ -60,14 +70,15 @@ class MaterialPurchaseController extends Controller
             'product' => 'sometimes',
             'supplier' => 'required',
             'currency' => 'sometimes|max:255',
+            'lc_id' => 'sometimes|max:255',
             'lc' => 'sometimes|max:255',
             'total_bdt' => 'sometimes|max:255',
-            'duty' => 'sometimes|max:255',
+            'other_costs' => 'sometimes|max:255',
             'quantity' => 'sometimes|max:255'
 
         ]);
 
-        $unit_price = $request->total_bdt_amount / $request->quantity;
+        $unit_price = $request->total_bdt / $request->quantity;
 
         $purchases = new MaterialPurchase();
         $purchases->date = $request->date;
@@ -77,20 +88,31 @@ class MaterialPurchaseController extends Controller
         $purchases->currency = $request->currency;
         $purchases->lc = $request->lc;
         $purchases->total_bdt = $request->total_bdt;
-        $purchases->duty = $request->duty;
+        $purchases->other_costs = $request->other_costs;
         $purchases->quantity = $request->quantity;
         $purchases->unit_price = $unit_price;
         $purchases->save();
+
 
         $product = ProductModel::where('id',$request->product)->first();
         $qty = $product->quantity;
         $qty = $qty + $request->quantity;
 
         $productModel = ProductModel::find($request->product);
-        $productModel->buyPrice = $request->total_bdt;
-        $productModel->unitPrice = $request->total_bdt;
+        $productModel->unitPrice = $unit_price;
         $productModel->quantity = $qty;
         $productModel->save();
+
+
+        $lcs = Lc::where('id',$request->lc_id)->first();
+        $lcs = $lcs->av_qty;
+        $lcs = $lcs - $request->quantity;
+
+        $lc = Lc::find($request->lc_id);
+        $lc->av_qty = $lcs;
+        $lc->save();
+
+
 
         flash('New Purchases Add Success.')->success();
 

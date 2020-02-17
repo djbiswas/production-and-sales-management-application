@@ -153,8 +153,14 @@
     padding: 8px 0
 }
 
-@media print {
+.truck {
+    background: #d3d3d3 !important;
+}
 
+@media print {
+    .invoice header {
+        display: none !important;
+    }
 
     .invoice {
         font-size: 11px!important;
@@ -177,6 +183,10 @@
 
     table {
         background: blueviolet;
+    }
+
+    .invoice main {
+        margin-top: 100px;
     }
 
 }

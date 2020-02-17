@@ -19,6 +19,9 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('address');
+            $table->decimal('buy',25,2)->default('0');
+            $table->decimal('pay',25,2)->default('0');
+            $table->decimal('due',25,2)->default('0');
             $table->timestamps();
         });
     }

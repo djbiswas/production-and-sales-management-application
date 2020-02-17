@@ -18,6 +18,12 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $sales = Sale::with('customer')->get();
@@ -50,6 +56,8 @@ class SaleController extends Controller
     {
         $this->validate($request, [
             'invoice' => 'required',
+            'shipping_address' => 'sometimes',
+            'track_number' => 'required',
             'customer_id' => 'required',
             'date' => 'required',
             'subtotal' => 'required',
@@ -70,10 +78,18 @@ class SaleController extends Controller
             $saleStatus = 'Complete';
         }
 
+        $buy = 0;
+
+        for ($i=0; $i <count($request->price) ; $i++) {
+            $products = ProductModel::where('id',$request->product_model_id[$i])->first();
+            $punitPrice = $products->unitPrice * $request->orderQuantity[$i];
+            $buy = $buy + $punitPrice;
+        }
 
 
         $sale = new Sale();
         $sale->invoice = $request->invoice;
+        $sale->shipping_address = $request->shipping_address;
         $sale->customer_id = $request->customer_id;
         $sale->user_id = Auth::user()->id;
         $sale->date = $request->date;
@@ -81,21 +97,22 @@ class SaleController extends Controller
         $sale->vat = $request->vat;
         $sale->discount = $request->discount;
         $sale->netTotal = $request->netTotal;
+        $sale->buy = $buy;
         $sale->paid = $request->paid;
         $sale->due = $request->due;
         $sale->status = $saleStatus;
         $sale->save();
 
+        $customer = customer::where('id',$request->customer_id)->first();
+        $customer_buy = $customer->buy + $request->netTotal;
+        $customer_pay = $customer->pay + $request->paid;
+        $customer_due = $customer->due + $request->due;
 
-//        $payment = [
-//            'invoice' => $request->invoice,
-//            'date' => $request->date,
-//            'sale_id' => $sale->id,
-//            'customer_id' => $request->customer_id,
-//            'user_id' => Auth::user()->id,
-//            'amount' => $request->paid
-//        ];
-
+        $customer_up = customer::find($request->customer_id);
+        $customer_up->buy = $customer_buy;
+        $customer_up->pay = $customer_pay;
+        $customer_up->due = $customer_due;
+        $customer_up->save();
 
         $payment = new SalePayment();
         $payment->invoice = $request->invoice;
@@ -110,9 +127,10 @@ class SaleController extends Controller
             $saleItem = new SaleItem();
             $saleItem->invoice = $request->invoice;
             $saleItem->sale_id = $sale->id;
+            $saleItem->track_number = $request->track_number[$i];
             $saleItem->product_model_id = $request->product_model_id[$i];
-            $product_name = ProductModel::where('id',$request->product_model_id[$i])->first();
-            $product_name = $product_name->product_model_name;
+            $product_info = ProductModel::where('id',$request->product_model_id[$i])->first();
+            $product_name = $product_info->product_model_name;
             $saleItem->product_name = $product_name;
             $saleItem->orderQuantity = $request->orderQuantity[$i];
             $saleItem->price = $request->price[$i];
@@ -121,7 +139,6 @@ class SaleController extends Controller
         }
 
         flash('New Sales Add Success.')->success();
-
         return redirect()->route('sales.index');
     }
 
@@ -161,6 +178,7 @@ class SaleController extends Controller
     {
         $this->validate($request, [
             'invoice' => 'required',
+            'shipping_address' => 'sometimes',
             'customer_id' => 'required',
             'date' => 'required',
             'subtotal' => 'required',
@@ -217,6 +235,7 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Sale $sale)
     {
         $sale->delete();
@@ -261,4 +280,6 @@ class SaleController extends Controller
         return $product;
 
     }
+
+
 }

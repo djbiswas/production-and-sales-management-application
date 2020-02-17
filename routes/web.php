@@ -33,6 +33,11 @@ Route::resource('/taxCategories', 'TaxCategoryController');
 Route::resource('/stockUnits', 'StockUnitController');
 Route::resource('/lcs', 'LcController');
 Route::resource('/sales', 'SaleController');
+
+Route::get('/customer_pay/{id}', 'CustomerController@customer_pay')->name('customer_pay');
+
+Route::post('/customer_paid', 'CustomerController@customer_paid')->name('customer_paid');
+
 Route::resource('/sales_returns', 'SalesReturnController');
 Route::get('/sr_form/{id}', 'SalesReturnController@sr_form')->name('sales_returns.sr_form');
 
@@ -42,6 +47,9 @@ Route::get('/sr_form/{id}', 'SalesReturnController@sr_form')->name('sales_return
 Route::get('/sales_report', 'Report@sales_report');
 Route::get('get_sales_data', 'Report@get_sales_data')->name('get_sales_data');
 
+Route::get('/profit_loss', 'Report@profit_loss');
+Route::get('get_profit_loss', 'Report@get_profit_loss')->name('get_profit_loss');
+
 Route::get('/purchases_report', 'Report@purchases_report');
 Route::get('get_purchases_data', 'Report@get_purchases_data')->name('get_purchases_data');
 
@@ -49,7 +57,13 @@ Route::get('get_purchases_data', 'Report@get_purchases_data')->name('get_purchas
 Route::get('/stock_report', 'Report@stock_report');
 Route::get('get_stock_data', 'Report@get_stock_data')->name('get_stock_data');
 
+Route::get('/customer_reports', 'Report@customer_reports')->name('customer_reports');
+Route::get('get_customers_data', 'Report@get_customers_data')->name('get_customers_data');
+
 Route::get('/customer_report', 'Report@customer_report');
+
+Route::post('/get_lc', 'MaterialPurchaseController@get_lc');
+
 
 Route::post('/addNewRow', 'SaleController@addNewRow');
 Route::post('/single_sell_item', 'SaleController@single_sell_item');

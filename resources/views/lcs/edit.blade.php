@@ -41,6 +41,12 @@
         {{Form::number('amount', null, ['class' => 'form-control', 'placeholder' => 'Amount', 'required']) }}
     </div>
 
+        <!-- Amount Input Form -->
+    <div class="form-group">
+        {{Form::label('av_qty','Stock:') }}
+        {{Form::number('av_qty', null, ['class' => 'form-control', 'placeholder' => 'Stock', 'required']) }}
+    </div>
+
     <!-- Price Input Form -->
     <div class="form-group">
         {{Form::label('price','Price:') }}

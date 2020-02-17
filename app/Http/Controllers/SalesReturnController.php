@@ -16,6 +16,12 @@ class SalesReturnController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $returns = SalesReturn::with('sale')->with('customer')->get();

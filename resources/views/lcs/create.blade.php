@@ -3,7 +3,17 @@
 @section('content')
 <div style="margin: 0 15%;">
     <div class="card card-accent-primary mb-3 text-left" style="">
-        <div class="card-header">Add New LC</div>
+        <div class="card-header">
+            <div class="row">
+                <div class="col">Bank Accounts</div>
+
+                <div class="col text-right">
+
+                    <a href="{{route('lcs.index')}}" class="btn btn-primary">
+                        <i class="mdi mdi-account-edit"></i> LC List</a>
+                </div>
+            </div>
+        </div>
         <div class="card-body text-primary">
             {!! Form::open(['route' => 'lcs.store', 'method' => 'post']) !!}
             {{csrf_field()}}
@@ -14,9 +24,9 @@
                     {{Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
                 </div>
 
-            {{ Form::label('name', 'LC Name')}}
+            {{ Form::label('name', 'LC Number')}}
             <div class="input-group mb-3">
-                {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Lc Name', 'required'  ))}}
+                {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'LC Number', 'required'  ))}}
             </div>
 
                 <!-- Bank Name Select Field -->
@@ -29,13 +39,6 @@
                                 <strong>{{ $errors->first('bank_account_id') }}</strong>
                             </span>
                     @endif
-
-                </div>
-
-                <!-- Amount Input Form -->
-                <div class="form-group">
-                    {{Form::label('amount','Amount:') }}
-                    {{Form::number('amount', null, ['class' => 'form-control', 'placeholder' => 'Amount', 'required']) }}
                 </div>
 
                 <!-- Price Input Form -->
@@ -44,7 +47,11 @@
                     {{Form::number('price', null, ['class' => 'form-control', 'placeholder' => 'Price', 'required']) }}
                 </div>
 
-
+                <!-- Amount Input Form -->
+                <div class="form-group">
+                    {{Form::label('amount','QTY (TON):') }}
+                    {{Form::number('amount', null, ['class' => 'form-control', 'placeholder' => 'Amount', 'required']) }}
+                </div>
 
                 {{ Form::label('note', 'LC Description')}}
                 <div class="input-group mb-3">

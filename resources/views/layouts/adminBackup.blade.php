@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <!-- Styles -->
+    <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet" media='screen,print'>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" media='screen,print'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
@@ -31,62 +31,77 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <img src="/sst.jpg" alt="SSTraders" width="200">
+            <h3> <a href="/">{{ config('app.name', 'Laravel') }} </a></h3>
         </div>
 
         <ul class="list-unstyled components">
             <p><a href="/">DASHBOARD</a></p>
             <li class="accordion" id="accordionExample">
 
-                {{-- Products submenu --}}
-
-                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productSubmenu" >Products (Stone)</a>
-                <ul class="{{ Request::path() === 'productModels' || Request::path() === 'productModels/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productSubmenu">
-                    <li>
-                        <a href="/productModels">Stones List</a>
-                    </li>
-                    <li>
-                        <a href="/productModels/create">Add New Stone</a>
-                    </li>
-                </ul>
-
                 {{-- Purchases submenu--}}
-                <a href="#purchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#purchasesSubmenu" >Purchases (Stone)</a>
+                <a href="#purchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#purchasesSubmenu" >Purchases</a>
                 <ul class="{{ Request::path() === 'materialPurchases' || Request::path() === 'materialPurchases/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="purchasesSubmenu">
                     <li>
-                        <a href="/materialPurchases">Purchase List</a>
+                        <a href="/materialPurchases">All Purchase</a>
                     </li>
                     <li>
                         <a href="/materialPurchases/create">New Purchase</a>
                     </li>
                 </ul>
+
+
                 {{-- Product Types submenu--}}
+
+                <a href="#productTypesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productTypesSubmenu" >Product Types</a>
+                <ul class="{{ Request::path() === 'productTypes' || Request::path() === 'productTypes/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productTypesSubmenu">
+                    <li>
+                        <a href="/productTypes">Product Type List</a>
+                    </li>
+                    <li>
+                        <a href="/productTypes/create">New Product Type</a>
+                    </li>
+                </ul>
+
+
+
+                {{-- Stock Item Groups submenu--}}
+                <a href="#stockItemGroupsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockItemGroupsSubmenu" >Stock Items Group</a>
+                <ul class="{{ Request::path() === 'stockItemGroups' || Request::path() === 'stockItemGroups/create' ? 'show ' : ''}} collapse list-unstyled" data-parent="#accordionExample" id="stockItemGroupsSubmenu">
+                    <li>
+                        <a href="/stockItemGroups">Stock ItemGroup List</a>
+                    </li>
+                    <li>
+                        <a href="/stockItemGroups/create">New Stock ItemGroup</a>
+                    </li>
+                </ul>
+
+
 
                 {{-- Stock Units Groups submenu--}}
 
-{{--                <a href="#stockUnitsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockUnitsSubmenu" >Stock Units Groups </a>--}}
-{{--                <ul class="{{ Request::path() === 'stockUnits' || Request::path() === 'stockUnits/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="stockUnitsSubmenu">--}}
-{{--                    <li>--}}
-{{--                        <a href="/stockUnits">Stock Units List</a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="/stockUnits/create">New Stock Unit</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
+                <a href="#stockUnitsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockUnitsSubmenu" >Stock Units Groups </a>
+                <ul class="{{ Request::path() === 'stockUnits' || Request::path() === 'stockUnits/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="stockUnitsSubmenu">
+                    <li>
+                        <a href="/stockUnits">Stock Units List</a>
+                    </li>
+                    <li>
+                        <a href="/stockUnits/create">New Stock Unit</a>
+                    </li>
+                </ul>
 
 
 
                 {{-- Tax Categories Groups submenu --}}
 
-{{--                <a href="#taxCategoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#taxCategoriesSubmenu" >Tax Categories </a>--}}
-{{--                <ul class="{{ Request::path() === 'taxCategories' || Request::path() === 'taxCategories/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="taxCategoriesSubmenu">--}}
-{{--                    <li>--}}
-{{--                        <a href="/taxCategories">Tax Category List</a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="/taxCategories/create">New Tax Category</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
+                <a href="#taxCategoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#taxCategoriesSubmenu" >Tax Categories </a>
+                <ul class="{{ Request::path() === 'taxCategories' || Request::path() === 'taxCategories/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="taxCategoriesSubmenu">
+                    <li>
+                        <a href="/taxCategories">Tax Category List</a>
+                    </li>
+                    <li>
+                        <a href="/taxCategories/create">New Tax Category</a>
+                    </li>
+                </ul>
 
                 {{-- Banks list submenu --}}
 
@@ -114,7 +129,20 @@
                 </ul>
 
 
-    {{-- Currency Convert submenu --}}
+                {{-- Products submenu --}}
+
+                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productSubmenu" >Products</a>
+                <ul class="{{ Request::path() === 'productModels' || Request::path() === 'productModels/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productSubmenu">
+                    <li>
+                        <a href="/productModels">All Products</a>
+                    </li>
+                    <li>
+                        <a href="/productModels/create">New Product</a>
+                    </li>
+                </ul>
+
+
+                {{-- Currency Convert submenu --}}
 
                 <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#currencySubmenu" >Currency Convert</a>
                 <ul class="{{ Request::path() === 'currencies' || Request::path() === 'currencies/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="currencySubmenu">
@@ -181,10 +209,7 @@
                 {{-- Reports submenu --}}
 
                 <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#reportSubmenu" >Reports</a>
-                <ul class="{{ Request::path() === 'sales_report' || Request::path() === 'purchases_report'|| Request::path() === 'stock_report'|| Request::path() === 'customer_reports'|| Request::path() === 'profit_loss'}}collapse list-unstyled" data-parent="#accordionExample" id="reportSubmenu">
-                    <li>
-                        <a href="/profit_loss">Profit & Loss</a>
-                    </li>
+                <ul class="{{ Request::path() === 'sales_report' || Request::path() === 'purchases_report'|| Request::path() === 'stock_report'|| Request::path() === 'customer_report'}}collapse list-unstyled" data-parent="#accordionExample" id="reportSubmenu">
                     <li>
                         <a href="/sales_report">Sales Report</a>
                     </li>
@@ -195,7 +220,7 @@
                         <a href="/stock_report">Stock Report</a>
                     </li>
                     <li>
-                        <a href="/customer_reports">Customers</a>
+                        {{--                        <a href="/customer_report">Customers</a>--}}
                     </li>
 
                 </ul>
@@ -258,9 +283,9 @@
                                 </form>
                             </div>
                         </li>
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link" href="#">Page</a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <a class="nav-link" href="#">Page</a>--}}
+                        {{--                        </li>--}}
 
                     </ul>
                 </div>
@@ -315,7 +340,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
         $("#sidebar").mCustomScrollbar({
             theme: "minimal"
@@ -332,17 +357,17 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.1/dist/sweetalert2.all.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('.select2_op').select2();
-        });
-    </script>
+<script>
+    $(document).ready(function() {
+        $('.select2_op').select2();
+    });
+</script>
 
-    <script>
-        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-    </script>
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 
-    @yield('scripts')
+@yield('scripts')
 </body>
 
 </html>

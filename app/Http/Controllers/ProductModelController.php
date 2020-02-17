@@ -17,9 +17,15 @@ class ProductModelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-       $productModels = ProductModel::with('product_type')->with('stock_item_group')->with('tax_category')->with('stock_unit')->get();
+       $productModels = ProductModel::where('category_id',1)->get();
         return view('products.index',compact('productModels'));
     }
 
@@ -47,20 +53,21 @@ class ProductModelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'product_type_id' => 'required',
+            'category_id' => 'sometimes',
+            'product_type_id' => 'sometimes',
             'product_model_name' => 'required',
-            'unitPrice' => 'required',
-            'sellPrice' => 'required',
-            'quantity' => 'required',
-            'stock_item_group_id' => 'required',
-            'tax_category_id' => 'required',
-            'lc_id' => 'required',
-            'stock_unit_id' => 'required',
+            'unitPrice' => 'sometimes',
+            'sellPrice' => 'sometimes',
+            'quantity' => 'sometimes',
+            'stock_item_group_id' => 'sometimes',
+            'tax_category_id' => 'sometimes',
+            'stock_unit_id' => 'sometimes',
             'model_description' => 'sometimes'
 
         ]);
 
         $productModel = New ProductModel();
+        $productModel->category_id = 1;
         $productModel->product_type_id = $request->product_type_id;
         $productModel->product_model_name = $request->product_model_name;
         $productModel->unitPrice = $request->unitPrice;
@@ -116,20 +123,21 @@ class ProductModelController extends Controller
     public function update(Request $request, ProductModel $productModel)
     {
         $this->validate($request, [
-            'product_type_id' => 'required',
+            'category_id' => 'sometimes',
+            'product_type_id' => 'sometimes',
             'product_model_name' => 'required',
-            'unitPrice' => 'required',
-            'sellPrice' => 'required',
-            'quantity' => 'required',
-            'stock_item_group_id' => 'required',
-            'tax_category_id' => 'required',
-            'lc_id' => 'required',
-            'stock_unit_id' => 'required',
+            'unitPrice' => 'sometimes',
+            'sellPrice' => 'sometimes',
+            'quantity' => 'sometimes',
+            'stock_item_group_id' => 'sometimes',
+            'tax_category_id' => 'sometimes',
+            'stock_unit_id' => 'sometimes',
             'model_description' => 'sometimes'
 
         ]);
 
         $productModel = ProductModel::find($productModel->id);
+        $productModel->category_id = 1;
         $productModel->product_type_id = $request->product_type_id;
         $productModel->product_model_name = $request->product_model_name;
         $productModel->unitPrice = $request->unitPrice;

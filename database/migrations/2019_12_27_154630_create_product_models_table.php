@@ -15,16 +15,17 @@ class CreateProductModelsTable extends Migration
     {
         Schema::create('product_models', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_type_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('product_type_id')->nullable();
             $table->string('product_model_name');
-            $table->double('unitPrice',25,2)->nullable();
-            $table->double('sellPrice',25,2)->nullable();
-            $table->bigInteger('quantity')->nullable();
+            $table->double('unitPrice',25,2)->default('0');
+            $table->double('sellPrice',25,2)->default('0');
+            $table->bigInteger('quantity')->default('0');
 
-            $table->unsignedBigInteger('stock_item_group_id');
-            $table->unsignedBigInteger('tax_category_id');
-            $table->unsignedBigInteger('stock_unit_id');
-            $table->unsignedBigInteger('lc_id');
+            $table->unsignedBigInteger('stock_item_group_id')->nullable();
+            $table->unsignedBigInteger('tax_category_id')->nullable();
+            $table->unsignedBigInteger('stock_unit_id')->nullable();
+
 
             $table->string('model_description')->nullable();
             $table->foreign('product_type_id')->references('id')

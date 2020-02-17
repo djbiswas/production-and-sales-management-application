@@ -16,6 +16,7 @@ class CreateSaleItemsTable extends Migration
         Schema::create('sale_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('invoice');
+            $table->string('track_number');
             $table->unsignedBigInteger('sale_id');
             $table->foreign('sale_id')->references('id')
                 ->on('sales')->onUpdate('cascade')->onDelete('cascade');

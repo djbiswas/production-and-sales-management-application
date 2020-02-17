@@ -2,30 +2,30 @@
 
 @section('content')
 
-    <h2 id="tr" class="text-center">Stock Report</h2>
+    <h2 id="tr" class="text-center">Profit Loss</h2>
     <div class="card-header">
-        <form action = "" >
+        <form action = "">
             <div class="form-row">
                 <div class="col-2 d-flex align-items-center">
                     <strong class="card-title m-0">All Available Report</strong>
                 </div>
-{{--                <div class="col-md-1 d-flex align-items-center justify-content-end">--}}
-{{--                    <lable>Date</lable>--}}
-{{--                </div>--}}
-{{--                <div class="col-5">--}}
-{{--                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 4px 20px; border: 1px solid #ccc; width: 100%">--}}
-{{--                        <i class="mdi  mdi-calendar-clock"></i>&nbsp;--}}
-{{--                        <span></span> <i class="mdi mdi-arrow-down"></i>--}}
-{{--                    </div>--}}
+                <div class="col-md-1 d-flex align-items-center justify-content-end">
+                    <lable>Date</lable>
+                </div>
+                <div class="col-5">
+                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 4px 20px; border: 1px solid #ccc; width: 100%">
+                        <i class="mdi  mdi-calendar-clock"></i>&nbsp;
+                        <span></span> <i class="mdi mdi-arrow-down"></i>
+                    </div>
 
-{{--                    <div class="input-daterange d-none">--}}
-{{--                        <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" readonly />--}}
-{{--                        <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" readonly />--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                    <div class="input-daterange d-none">
+                        <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" readonly />
+                        <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" readonly />
+                    </div>
+                </div>
 
                 <div class="col">
-                    {{Form::select('product_id', $products, null, ['id' => 'product_id', 'class' => 'select2_op form-control','placeholder' => 'Select Product', 'required'])}}
+                    {{Form::select('customer_id', $customers, null, ['id' => 'customer_id', 'class' => 'select2_op form-control','placeholder' => 'Select Customer', 'required'])}}
                 </div>
 
                 <div class="col text-center">
@@ -40,20 +40,24 @@
         <thead>
         <tr>
             <th>No</th>
-            <th>Product Name</th>
-            <th>Unit Price</th>
-            <th>Sell  Price</th>
-            <th>Product Quantity</th>
+            <th>Date</th>
+            <th>Invoice</th>
+            <th>Customer Name</th>
+            <th>Total Buy Price</th>
+            <th>Net Total</th>
+            <th>Profit / Loss</th>
         </tr>
         </thead>
 
         <tfoot>
         <tr>
             <th>No</th>
-            <th>Product Name</th>
-            <th>Unit Price</th>
-            <th>Sell  Price</th>
-            <th>Product Quantity</th>
+            <th>Date</th>
+            <th>Invoice</th>
+            <th>Customer Name</th>
+            <th>Total Buy Price</th>
+            <th>Net Total</th>
+            <th>Profit / Loss</th>
         </tr>
         </tfoot>
     </table>
@@ -97,10 +101,10 @@
         //ajux data with date range
 
         $(function() {
-            var product_name = '';
+            var customer_name = '';
             load_data();
 
-            function load_data(from_date = '', to_date = '', product_id = '')
+            function load_data(from_date = '', to_date = '', customer_id = '')
             {
                 $('#trips_report_table').DataTable({
 
@@ -110,20 +114,20 @@
                     buttons: [
                         {
                             extend: 'pdf',
-                            messageTop: 'Stock Report',
+                            messageTop: 'Sales Report',
                             footer: true
                         },
                         'csv',
                         'excel',
                         {
                             extend: 'print',
-                            messageTop: '<h2>Stock Report ' +product_name+ '</h2>',
+                            messageTop: '<h2>Sales Report ' +customer_name+ '</h2>',
                             footer: true
                         }
                     ],
                     ajax: {
-                        url:'{!! route("get_stock_data") !!}',
-                        data:{from_date:from_date, to_date:to_date, product_id:product_id}
+                        url:'{!! route("get_profit_loss") !!}',
+                        data:{from_date:from_date, to_date:to_date, customer_id:customer_id}
                     },
                     columns: [
                         {
@@ -132,11 +136,12 @@
                                 return meta.row + meta.settings._iDisplayStart + 1;
                             }
                         },
-                        { data: 'product_model_name', name: 'product_model_name' },
-                        { data: 'unitPrice', name: 'unitPrice', className: 'sum' },
-                        { data: 'sellPrice', name: 'sellPrice', className: 'sum'},
-                        { data: 'quantity', name: 'quantity', className: 'sum' }
-
+                        { data: 'date', name: 'date' },
+                        { data: 'invoice', name: 'invoice' },
+                        { data: 'customer_name', name: 'customer_name' },
+                        { data: 'netTotal', name: 'netTotal', className: 'sum' },
+                        { data: 'buy', name: 'buy', className: 'sum' },
+                        { data: 'pl', name: 'pl', className: 'sum' }
                     ],
 
                     "footerCallback": function(row, data, start, end, display) {
@@ -163,22 +168,21 @@
             $('#filter').click(function(){
                 var from_date = $('#from_date').val();
                 var to_date = $('#to_date').val();
-                var product_id = $("#product_id option:selected").val();
-                console.log(product_id);
+                var customer_id = $("#customer_id option:selected").val();
 
-                if (product_id != ''){
-                    product_name = '-'+ $("#product_id option:selected").text();
-                    document.getElementById("tr").innerHTML = 'Stock Report'+product_name;
+                if (customer_id != ''){
+                    customer_name = '-'+ $("#customer_id option:selected").text();
+                    document.getElementById("tr").innerHTML = 'Profit Loss'+customer_name;
                 }else {
-                    product_name = '';
-                    document.getElementById("tr").innerHTML = 'Stock Report'+product_name;
+                    customer_name = '';
+                    document.getElementById("tr").innerHTML = 'Profit Loss'+customer_name;
                 }
 
 
                 if( from_date != '' &&  to_date != '')
                 {
                     $('#trips_report_table').DataTable().destroy();
-                    load_data(from_date, to_date, product_id);
+                    load_data(from_date, to_date, customer_id);
                 }
                 else
                 {
@@ -189,10 +193,10 @@
             $('#refresh').click(function(){
                 $('#from_date').val('');
                 $('#to_date').val('');
-                $("#product_id").select2().val('').trigger("change");
+                $("#customer_id").select2().val('').trigger("change");
                 $('#trips_report_table').DataTable().destroy();
-                product_name = '';
-                document.getElementById("tr").innerHTML = 'Stock Report '+product_name;
+                customer_name = '';
+                document.getElementById("tr").innerHTML = 'Profit Loss '+customer_name;
                 load_data();
             });
 

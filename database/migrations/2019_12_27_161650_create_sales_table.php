@@ -17,6 +17,7 @@ class CreateSalesTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->string('invoice');
+            $table->string('shipping_address');
 
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')
@@ -26,6 +27,7 @@ class CreateSalesTable extends Migration
             $table->foreign('user_id')->references('id')
                 ->on('users')->onUpdate('cascade')->onDelete('cascade');
 
+            $table->decimal('buy', 25, 4);
             $table->decimal('subtotal', 25, 4);
             $table->decimal('discount', 25, 4);
             $table->decimal('vat', 25, 4);

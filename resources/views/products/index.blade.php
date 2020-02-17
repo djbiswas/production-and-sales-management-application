@@ -20,9 +20,9 @@
             <tr>
                 <th>No</th>
                 <th>Product Name</th>
-                <th>Product Type</th>
-                <th>Product Group</th>
-                <th>Product Tax Category</th>
+                <th>Unit Price</th>
+                <th>Sell Price</th>
+                <th>Quantity</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -33,9 +33,9 @@
 
                     <th>{{$productModel->id}} </th>
                     <td>{{$productModel->product_model_name}}</td>
-                    <td>{{$productModel->product_type->product_type_name}}</td>
-                    <td>{{$productModel->stock_item_group->group_name}}</td>
-                    <td>{{$productModel->tax_category->tax_name}}</td>
+                    <td>{{$productModel->unitPrice}}</td>
+                    <td>{{$productModel->sellPrice}}</td>
+                    <td>{{$productModel->quantity}}</td>
 
 
                     <td class="has-text-right">

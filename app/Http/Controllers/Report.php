@@ -6,12 +6,19 @@ use App\customer;
 use App\MaterialPurchase;
 use App\ProductModel;
 use App\Sale;
+use App\Stone_pl;
 use App\Supplier;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class Report extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function sales_report() {
         $customers = customer::pluck('name','id');
         return view('reports.sales_report',compact('customers'));
@@ -36,6 +43,35 @@ class Report extends Controller
             } else {
 //              $sales_date = Trip::orderBy('id', 'desc')->get();
                 $sales_date = Sale::with('customer')->get();
+            }
+            return DataTables::of($sales_date)->make(true);
+        }
+    }
+
+    public function profit_loss() {
+        $customers = customer::pluck('name','id');
+        return view('reports.profit_loss',compact('customers'));
+    }
+
+
+    public function get_profit_loss(Request $request)
+    {
+        if (request()->ajax()) {
+            if (!empty($request->from_date)) {
+                $startdate = $request->from_date;
+                $enddate = $request->to_date;
+                $customer_id = $request->customer_id;
+
+                $query = 'date(date) between "' . $startdate . '" AND "' . $enddate . '"';
+                if ($customer_id == ''){
+                    $sales_date = Stone_pl::whereRaw($query)->get();
+                }else {
+                    $sales_date = Stone_pl::whereRaw($query)->where('customer_id',$request->customer_id)->get();
+                }
+
+            } else {
+//              $sales_date = Trip::orderBy('id', 'desc')->get();
+                $sales_date = Stone_pl::get();
             }
             return DataTables::of($sales_date)->make(true);
         }
@@ -100,9 +136,34 @@ class Report extends Controller
     }
 
 
-    public function customer_report() {
-        return view('reports.customer_report');
+    public function customer_reports() {
+        $customers = customer::pluck('name','id');
+        return view('reports.customer_report',compact('customers'));
 
+    }
+
+
+    public function get_customers_data(Request $request)
+    {
+        if (request()->ajax()) {
+            if (!empty($request->product_id)) {
+                $startdate = $request->from_date;
+                $enddate = $request->to_date;
+                $customer_id = $request->customer_id;
+
+                $query = 'date(date) between "' . $startdate . '" AND "' . $enddate . '"';
+                if ($customer_id == ''){
+                    $customer_data = customer::get();
+                }else {
+                    $customer_data = customer::where('id',$customer_id)->get();
+                }
+
+            } else {
+//              $customer_data = Trip::orderBy('id', 'desc')->get();
+                $customer_data = customer::get();
+            }
+            return DataTables::of($customer_data)->make(true);
+        }
     }
 
 
