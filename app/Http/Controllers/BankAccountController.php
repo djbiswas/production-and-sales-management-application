@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BankAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BankAccountController extends Controller
 {
@@ -45,7 +46,6 @@ class BankAccountController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'branch' => 'required'
-
         ]);
 
         $bankAccount = New BankAccount();

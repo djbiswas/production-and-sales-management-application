@@ -25,7 +25,7 @@ class MaterialPurchaseController extends Controller
 
     public function index()
     {
-        $purchases = MaterialPurchase::with('product_models')->with('suppliers')->get();
+        $purchases = MaterialPurchase::where('store',session()->get('template'))->with('product_models')->with('suppliers')->get();
         return view('purchases.index')->with(compact('purchases'));
     }
 
@@ -44,8 +44,8 @@ class MaterialPurchaseController extends Controller
 
     public function create()
     {
-        $products = ProductModel::pluck('product_model_name', 'id');
-        $suppliers = Supplier::pluck('name', 'id');
+        $products = ProductModel::where('store',session()->get('template'))->pluck('product_model_name', 'id');
+        $suppliers = Supplier::where('store',session()->get('template'))->pluck('name', 'id');
         $currencies = Currency::pluck('name', 'value');
         $lcs = Lc::pluck('name', 'id');
         return view('purchases.create')->with(compact('products','suppliers','currencies','lcs'));
@@ -82,6 +82,7 @@ class MaterialPurchaseController extends Controller
 
         $purchases = new MaterialPurchase();
         $purchases->date = $request->date;
+        $purchases->store = session()->get('template');
         $purchases->product_model_id = $request->product;
         $purchases->supplier_id = $request->supplier;
         $purchases->user_id = Auth::user()->id;

@@ -40,7 +40,7 @@
         <div class="row w-100">
             <div class="col-md-3 col-sm-4">
                 <div class="wrimagecard wrimagecard-topimage">
-                    <a href="/sales">
+                    <a href="/stone/sales">
                         <div class="wrimagecard-topimage_header text-center fsi" style="background-color:  rgba(51, 105, 232, 0.1)">
                             <i class="fas fa-list" style="color:#3369e8"></i>
                         </div>
@@ -55,7 +55,7 @@
 
             <div class="col-md-3 col-sm-4">
                 <div class="wrimagecard wrimagecard-topimage">
-                    <a href="/sales/create">
+                    <a href="/stone/sales/create">
                         <div class="wrimagecard-topimage_header text-center fsi" style="background-color: rgba(22, 160, 133, 0.1)">
                             <i class = "fas fa-cart-arrow-down" style="color:#16A085"></i>
                         </div>
@@ -69,7 +69,7 @@
 
             <div class="col-md-3 col-sm-4">
                 <div class="wrimagecard wrimagecard-topimage">
-                    <a href="/materialPurchases">
+                    <a href="/stone/materialPurchases">
                         <div class="wrimagecard-topimage_header text-center fsi" style="background-color:  rgba(51, 105, 232, 0.1)">
                             <i class="fas fa-shopping-bag" style="color:#3369e8"> </i>
                         </div>
@@ -83,7 +83,7 @@
 
             <div class="col-md-3 col-sm-4">
                 <div class="wrimagecard wrimagecard-topimage">
-                    <a href="/customers">
+                    <a href="/stone/customers">
                         <div class="wrimagecard-topimage_header text-center fsi" style="background-color: rgba(22, 160, 133, 0.1)">
                             <i class = "fas fa-users" style="color:#16A085"></i>
                         </div>
@@ -98,7 +98,5 @@
 
         </div>
     </div>
-
-
 
 @endsection

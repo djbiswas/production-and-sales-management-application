@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adtiles')
 
 @section('content')
     <link href="{{ asset('css/db.css') }}" rel="stylesheet">
@@ -98,7 +98,5 @@
 
         </div>
     </div>
-
-
 
 @endsection

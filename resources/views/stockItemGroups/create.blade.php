@@ -2,7 +2,7 @@
 
 @section('content')
     <h2>New Product Stock Groups</h2>
-    {!! Form::open(['route' => 'productTypes.store', 'method' => 'post' ]) !!}
+    {!! Form::open(['route' => 'stockItemGroups.store', 'method' => 'post' ]) !!}
     {{csrf_field()}}
 
     {{Form::label('group_name', 'Product Group Name')}}

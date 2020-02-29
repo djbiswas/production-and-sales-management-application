@@ -15,9 +15,11 @@ class CreateProductModelsTable extends Migration
     {
         Schema::create('product_models', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('pt');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('product_type_id')->nullable();
             $table->string('product_model_name');
+            $table->string('store');
             $table->double('unitPrice',25,2)->default('0');
             $table->double('sellPrice',25,2)->default('0');
             $table->bigInteger('quantity')->default('0');

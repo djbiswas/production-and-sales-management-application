@@ -17,6 +17,7 @@ class CreateLcsTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->string('name');
+            $table->string('store');
             $table->unsignedBigInteger('bank_account_id');
             $table->foreign('bank_account_id')->references('id')
                 ->on('bank_accounts')->onUpdate('cascade')->onDelete('cascade');

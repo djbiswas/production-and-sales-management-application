@@ -10,6 +10,7 @@ use App\SaleItem;
 use App\SalePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class SaleController extends Controller
 {
@@ -26,8 +27,9 @@ class SaleController extends Controller
 
     public function index()
     {
+        $template = Session::get('template');
         $sales = Sale::with('customer')->get();
-        return view('sales.index', compact('sales'));
+        return view('sales.index', compact('sales','template'));
     }
 
     /**
@@ -41,9 +43,10 @@ class SaleController extends Controller
         $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
         $inv = 'SST'.$today . $rand;
 
+        $template = Session::get('template');
         $customers = customer::pluck('name','id');
 
-        return view('sales.create',compact('customers','inv'));
+        return view('sales.create',compact('customers','inv','template'));
     }
 
     /**
@@ -61,9 +64,11 @@ class SaleController extends Controller
             'customer_id' => 'required',
             'date' => 'required',
             'subtotal' => 'required',
+            'total_qty' => 'required',
             'vat' => 'sometimes',
             'discount' => 'sometimes',
             'netTotal' => 'required',
+            'word' => 'required',
             'paid' => 'sometimes',
             'due' => 'sometimes',
             'product_model_id' => 'sometimes',
@@ -94,9 +99,11 @@ class SaleController extends Controller
         $sale->user_id = Auth::user()->id;
         $sale->date = $request->date;
         $sale->subtotal = $request->subtotal;
+        $sale->total_qty = $request->total_qty;
         $sale->vat = $request->vat;
         $sale->discount = $request->discount;
         $sale->netTotal = $request->netTotal;
+        $sale->word = $request->word;
         $sale->buy = $buy;
         $sale->paid = $request->paid;
         $sale->due = $request->due;
@@ -150,8 +157,9 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
+        $template = Session::get('template');
         $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->with('customer')->first();
-        return view('sales.show',compact('sale'));
+        return view('sales.show',compact('sale','template'));
     }
 
     /**
@@ -162,9 +170,10 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
+        $template = Session::get('template');
         $customers = customer::pluck('name','id');
         $sale = Sale::where('id',$sale->id)->with('sale_items')->with('sale_payments')->first();
-        return view('sales.edit',compact('sale','customers'));
+        return view('sales.edit',compact('sale','customers','template'));
     }
 
     /**
@@ -205,9 +214,11 @@ class SaleController extends Controller
         $sale->user_id = Auth::user()->id;
         $sale->date = $request->date;
         $sale->subtotal = $request->subtotal;
+        $sale->total_qty = $request->total_qty;
         $sale->vat = $request->vat;
         $sale->discount = $request->discount;
         $sale->netTotal = $request->netTotal;
+        $sale->word = $request->word;
         $sale->paid = $request->paid;
         $sale->due = $request->due;
         $sale->status = $saleStatus;

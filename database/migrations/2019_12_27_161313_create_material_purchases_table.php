@@ -21,6 +21,7 @@ class CreateMaterialPurchasesTable extends Migration
             $table->unsignedBigInteger('supplier_id');
             $table->unsignedBigInteger('user_id');
             $table->string('currency');
+            $table->string('store');
             $table->decimal('lc', 25, 4);
             $table->decimal('total_bdt', 25, 4);
             $table->decimal('quantity', 25, 4);

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <!-- Styles -->
+    <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet" media='screen,print'>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" media='screen,print'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <img src="/sst.jpg" alt="SSTraders" width="200">
+            <a href="/"><img src="/sst.jpg" alt="SSTraders" width="200"></a>
         </div>
 
         <ul class="list-unstyled components">
@@ -40,19 +40,19 @@
 
                 {{-- Products submenu --}}
 
-                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productSubmenu" >Products ({{ session()->get('template') }})</a>
-                <ul class="{{ Request::path() === 'productModels' || Request::path() === 'productModels/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productSubmenu">
-                    <li>
-                        <a href="/productModels">Product List</a>
-                    </li>
-                    <li>
-                        <a href="/productModels/create">Add New</a>
-                    </li>
-                </ul>
+{{--                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productSubmenu" >Products (Tiles)</a>--}}
+{{--                <ul class="{{ Request::path() === 'tiles/productModels' || Request::path() === 'tiles/productModels/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productSubmenu">--}}
+{{--                    <li>--}}
+{{--                        <a href="/rawmaterials">Tiles List</a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="/rawmaterials/create">Add New Tiles</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
 
                 {{-- Purchases submenu--}}
-                <a href="#purchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#purchasesSubmenu" >Purchases ({{ session()->get('template') }})</a>
-                <ul class="{{ Request::path() === 'materialPurchases' || Request::path() === 'materialPurchases/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="purchasesSubmenu">
+                <a href="#purchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#purchasesSubmenu" >Purchases (Tiles)</a>
+                <ul class="{{ Request::path() === 'tiles/materialPurchases' || Request::path() === 'tiles/materialPurchases/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="purchasesSubmenu">
                     <li>
                         <a href="/materialPurchases">Purchase List</a>
                     </li>
@@ -60,67 +60,67 @@
                         <a href="/materialPurchases/create">New Purchase</a>
                     </li>
                 </ul>
-                @if(session()->get('template') == 'Tiles')
-
-
-
-                    {{-- Product Types submenu--}}
-
-                    <a href="#rawmaterialsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#rawmaterialsSubmenu" >Raw Materials</a>
-                    <ul class="{{ Request::path() === 'rawmaterials' || Request::path() === 'rawmaterials/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="rawmaterialsSubmenu">
-                        <li>
-                            <a href="/rawmaterials">Raw Materials List</a>
-                        </li>
-                        <li>
-                            <a href="/rawmaterials/create">New Raw Materials</a>
-                        </li>
-                    </ul>
-
-
 
                 {{-- Product Types submenu--}}
 
-                    <a href="#productTypesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productTypesSubmenu" >Product Types</a>
-                    <ul class="{{ Request::path() === 'productTypes' || Request::path() === 'productTypes/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productTypesSubmenu">
-                        <li>
-                            <a href="/productTypes">Product Type List</a>
-                        </li>
-                        <li>
-                            <a href="/productTypes/create">New Product Type</a>
-                        </li>
-                    </ul>
+                <a href="#productTypesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#productTypesSubmenu" >Product Types</a>
+                <ul class="{{ Request::path() === 'productTypes' || Request::path() === 'productTypes/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="productTypesSubmenu">
+                    <li>
+                        <a href="/productTypes">Product Type List</a>
+                    </li>
+                    <li>
+                        <a href="/productTypes/create">New Product Type</a>
+                    </li>
+                </ul>
 
-                    {{-- Stock Item Groups submenu--}}
-                    <a href="#stockItemGroupsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockItemGroupsSubmenu" >Stock Items Group</a>
-                    <ul class="{{ Request::path() === 'stockItemGroups' || Request::path() === 'stockItemGroups/create' ? 'show ' : ''}} collapse list-unstyled" data-parent="#accordionExample" id="stockItemGroupsSubmenu">
-                        <li>
-                            <a href="/stockItemGroups">Stock ItemGroup List</a>
-                        </li>
-                        <li>
-                            <a href="/stockItemGroups/create">New Stock ItemGroup</a>
-                        </li>
-                    </ul>
 
-                    {{-- Stock Units Groups submenu--}}
+                {{-- Stock Item Groups submenu--}}
+                <a href="#stockItemGroupsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockItemGroupsSubmenu" >Stock Items Group</a>
+                <ul class="{{ Request::path() === 'stockItemGroups' || Request::path() === 'stockItemGroups/create' ? 'show ' : ''}} collapse list-unstyled" data-parent="#accordionExample" id="stockItemGroupsSubmenu">
+                    <li>
+                        <a href="/stockItemGroups">Stock ItemGroup List</a>
+                    </li>
+                    <li>
+                        <a href="/stockItemGroups/create">New Stock ItemGroup</a>
+                    </li>
+                </ul>
 
-                    <a href="#stockUnitsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockUnitsSubmenu" >Stock Units Groups </a>
-                    <ul class="{{ Request::path() === 'stockUnits' || Request::path() === 'stockUnits/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="stockUnitsSubmenu">
-                        <li>
-                            <a href="/stockUnits">Stock Units List</a>
-                        </li>
-                        <li>
-                            <a href="/stockUnits/create">New Stock Unit</a>
-                        </li>
-                    </ul>
-                @endif
+
+
+                {{-- Stock Units Groups submenu--}}
+
+                <a href="#stockUnitsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#stockUnitsSubmenu" >Stock Units Groups </a>
+                <ul class="{{ Request::path() === 'stockUnits' || Request::path() === 'stockUnits/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="stockUnitsSubmenu">
+                    <li>
+                        <a href="/stockUnits">Stock Units List</a>
+                    </li>
+                    <li>
+                        <a href="/stockUnits/create">New Stock Unit</a>
+                    </li>
+                </ul>
+
+
+
+                {{-- Tax Categories Groups submenu --}}
+
+{{--                <a href="#taxCategoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#taxCategoriesSubmenu" >Tax Categories </a>--}}
+{{--                <ul class="{{ Request::path() === 'taxCategories' || Request::path() === 'taxCategories/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="taxCategoriesSubmenu">--}}
+{{--                    <li>--}}
+{{--                        <a href="/taxCategories">Tax Category List</a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="/taxCategories/create">New Tax Category</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+
 
                 <a href="#bankSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#bankSubmenu" >Bank Accounts </a>
                 <ul class="{{ Request::path() === 'bankAccounts' || Request::path() === 'bankAccounts/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="bankSubmenu">
                     <li>
-                        <a href="/bankAccounts">Bank Account List</a>
+                        <a href="/banks">Bank Account List</a>
                     </li>
                     <li>
-                        <a href="/bankAccounts/create">Add New Bank Account</a>
+                        <a href="/banks/create">Add New Bank Account</a>
                     </li>
                 </ul>
 
@@ -128,7 +128,7 @@
                 {{-- LC list submenu --}}
 
                 <a href="#lcSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#lcSubmenu" >LC list </a>
-                <ul class="{{ Request::path() === 'lcs' || Request::path() === 'lcs/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="lcSubmenu">
+                <ul class="{{ Request::path() === 'tiles/lcs' || Request::path() === 'tiles/lcs/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="lcSubmenu">
                     <li>
                         <a href="/lcs">Lc List</a>
                     </li>
@@ -137,9 +137,10 @@
                     </li>
                 </ul>
 
-    {{-- Currency Convert submenu --}}
+                {{-- Currency Convert submenu --}}
+
                 <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#currencySubmenu" >Currency Convert</a>
-                <ul class="{{ Request::path() === 'currencies' || Request::path() === 'currencies/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="currencySubmenu">
+                <ul class="{{ Request::path() === 'tiles/currencies' || Request::path() === 'tiles/currencies/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="currencySubmenu">
                     <li>
                         <a href="/currencies">List Of Currencies</a>
                     </li>
@@ -152,7 +153,7 @@
                 {{-- Sales submenu --}}
 
                 <a href="#saleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#saleSubmenu">Sales</a>
-                <ul class="{{ Request::path() === 'sales' || Request::path() === 'sales/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="saleSubmenu">
+                <ul class="{{ Request::path() === 'tiles/sales' || Request::path() === 'tiles/sales/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="saleSubmenu">
                     <li>
                         <a href="/sales">All Sales</a>
                     </li>
@@ -162,7 +163,7 @@
                 </ul>
 
                 <a href="#returnSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#returnSubmenu">Returns</a>
-                <ul class="{{ Request::path() === 'return_products' || Request::path() === 'return_products/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="returnSubmenu">
+                <ul class="{{ Request::path() === 'tiles/return_products' || Request::path() === 'tiles/return_products/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="returnSubmenu">
                     <li>
                         <a href="/sales_returns">Sale Return List</a>
                     </li>
@@ -174,7 +175,7 @@
                 {{-- Suppliers submenu --}}
 
                 <a href="#supplierSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#supplierSubmenu" >Suppliers</a>
-                <ul class="{{ Request::path() === 'suppliers' || Request::path() === 'suppliers/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="supplierSubmenu">
+                <ul class="{{ Request::path() === 'tiles/suppliers' || Request::path() === 'tiles/suppliers/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="supplierSubmenu">
                     <li>
                         <a href="/suppliers">All Suppliers</a>
                     </li>
@@ -187,7 +188,7 @@
                 {{-- Customers submenu --}}
 
                 <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#customerSubmenu" >Customers</a>
-                <ul class="{{ Request::path() === 'customers' || Request::path() === 'customers/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="customerSubmenu">
+                <ul class="{{ Request::path() === 'tiles/customers' || Request::path() === 'tiles/customers/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="customerSubmenu">
                     <li>
                         <a href="/customers">All Customers</a>
                     </li>
@@ -201,7 +202,7 @@
                 {{-- Reports submenu --}}
 
                 <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#reportSubmenu" >Reports</a>
-                <ul class="{{ Request::path() === 'sales_report' || Request::path() === 'purchases_report'|| Request::path() === 'stock_report'|| Request::path() === 'customer_reports'|| Request::path() === 'profit_loss'}}collapse list-unstyled" data-parent="#accordionExample" id="reportSubmenu">
+                <ul class="{{ Request::path() === 'tiles/sales_report' || Request::path() === 'tiles/purchases_report'|| Request::path() === 'tiles/stock_report'|| Request::path() === 'tiles/customer_reports'|| Request::path() === 'tiles/profit_loss'}}collapse list-unstyled" data-parent="#accordionExample" id="reportSubmenu">
                     <li>
                         <a href="/profit_loss">Profit & Loss</a>
                     </li>
@@ -220,11 +221,12 @@
                 </ul>
             </li>
         </ul>
+
         <ul class="list-unstyled CTAs">
             <li>
                 <a class="download dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
 
@@ -234,7 +236,7 @@
                 {{--                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Log Out</a>--}}
             </li>
             <li>
-                <a href="/tiles" class="article">Switch to Tiles</a>
+                <a href="/stone" class="article">Switch to Stone</a>
             </li>
         </ul>
     </nav>
@@ -246,7 +248,7 @@
 
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
                     <i class="fas fa-align-left"></i>
-                    {{-- <span>Toggle Sidebar</span>--}}
+               {{-- <span>Toggle Sidebar</span>--}}
                 </button>
                 <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-align-justify"></i>
@@ -266,20 +268,23 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </div>
                         </li>
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link" href="#">Page</a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <a class="nav-link" href="#">Page</a>--}}
+                        {{--                        </li>--}}
+
                     </ul>
                 </div>
             </div>
         </nav>
 
         <div id="content-main" style="min-height: calc(100vh - 165px);">
+
             @include('flash::message')
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -291,20 +296,18 @@
                 </div>
             @endif
             @yield('content')
+
         </div>
 
         <!-- Footer -->
         <footer class="page-footer font-small" style="background: #e9ecef">
-
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3 ">© 2020 Copyright:
                 <a href="http://softxltd.com/"> SoftxLtd.com</a>
             </div>
             <!-- Copyright -->
-
         </footer>
         <!-- Footer -->
-
 
     </div>
 </div>
@@ -324,6 +327,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
 
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#sidebar").mCustomScrollbar({
@@ -341,17 +345,17 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.1/dist/sweetalert2.all.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('.select2_op').select2();
-        });
-    </script>
+<script>
+    $(document).ready(function() {
+        $('.select2_op').select2();
+    });
+</script>
 
-    <script>
-        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-    </script>
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 
-    @yield('scripts')
+@yield('scripts')
 </body>
 
 </html>

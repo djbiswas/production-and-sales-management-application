@@ -15,6 +15,7 @@ class CreateSalesReturnItemsTable extends Migration
     {
         Schema::create('sales_return_items', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('store');
 
             $table->unsignedBigInteger('sales_return_id');
             $table->foreign('sales_return_id')->references('id')

@@ -16,6 +16,7 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
+            $table->string('store');
             $table->string('invoice');
             $table->string('shipping_address');
 
@@ -27,13 +28,15 @@ class CreateSalesTable extends Migration
             $table->foreign('user_id')->references('id')
                 ->on('users')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->decimal('buy', 25, 4);
-            $table->decimal('subtotal', 25, 4);
-            $table->decimal('discount', 25, 4);
-            $table->decimal('vat', 25, 4);
-            $table->decimal('netTotal', 25, 4);
-            $table->decimal('paid', 25, 4);
-            $table->decimal('due', 25, 4);
+            $table->decimal('buy', 25, 2);
+            $table->decimal('total_qty', 25, 2);
+            $table->decimal('subtotal', 25, 2);
+            $table->decimal('discount', 25, 2);
+            $table->decimal('vat', 25, 2);
+            $table->decimal('netTotal', 25, 2);
+            $table->decimal('word', 25, 2);
+            $table->decimal('paid', 25, 2);
+            $table->decimal('due', 25, 2);
             $table->string('status');
             $table->text('note')->nullable();
             $table->timestamps();

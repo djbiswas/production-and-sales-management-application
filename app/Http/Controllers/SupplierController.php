@@ -20,7 +20,7 @@ class SupplierController extends Controller
 
     public function index()
     {
-        $suppliers = Supplier::get();
+        $suppliers = Supplier::where('store',session()->get('template'))->get();
         return view('suppliers.index', compact('suppliers'));
     }
 
@@ -43,11 +43,13 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'store' => 'required'
         ]);
 
         $supplier = new Supplier();
         $supplier->name = $request->name;
+        $supplier->store = $request->store;
 
         $supplier->save();
 
@@ -62,7 +64,7 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)    {
+    public function show(Supplier $supplier) {
         return view('suppliers.index', compact('supplier'));
     }
 
@@ -87,11 +89,13 @@ class SupplierController extends Controller
     public function update(Request $request, Supplier $supplier)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'store' => 'required'
         ]);
 
         $supplier = Supplier::find($supplier->id);
         $supplier->name = $request->name;
+        $supplier->store = $request->store;
 
         $supplier->save();
 

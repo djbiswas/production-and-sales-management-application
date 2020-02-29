@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class HomeController extends Controller
+class StoneController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,16 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
-
-    public function admin(Request $request)
-    {
-        if($request->id == 'stone'){
-            Session::put('template', 'Stone');
-        } else {
-            Session::put('template', 'Tiles');
-        }
-        return view('admin');
+        Session::put('template', 'stone');
+        return view('stone');
     }
 }

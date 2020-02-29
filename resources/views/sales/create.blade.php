@@ -101,6 +101,18 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="total_qty">Total QTY</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        {{Form::number('total_qty', null, ['id' => 'total_qty','class' => 'form-control form-control-sm', 'placeholder' => 'Total QTY', 'step' => '0.01','required','readonly' ]) }}
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -168,6 +180,16 @@
                                     </div>
                                     <div class="col-md-7">
                                         {{Form::number('due', null, ['id' => 'due','class' => 'form-control form-control-sm', 'placeholder' => 'Due bill', 'step' => '0.01','required','readonly' ]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-2">
+{{--                                        <label for="word">In Word</label>--}}
+                                    </div>
+                                    <div class="col-md-11">
+                                        {{Form::text('word', null, ['id' => 'word','class' => 'form-control form-control-sm', 'placeholder' => 'In Word','required' ]) }}
                                     </div>
                                 </div>
                             </div>
@@ -261,6 +283,7 @@
             // calculate function
             function invoice_calculate(dis) {
                 var set_sub_total = 0;
+                var set_qty_total = 0;
                 var net_total = 0;
                 var vat =  $('#vat').val();
 
@@ -274,6 +297,13 @@
                     //$('#netTotal').val(net_total.toFixed(2));
                 });
 
+                $('.oqty').each(function() {
+                    set_qty_total = set_qty_total + ($(this).val() * 1);
+                    //$('#vat').val(make_vat);
+
+                    //$('#netTotal').val(net_total.toFixed(2));
+                });
+
                 // var make_discount = (set_sub_total / 100) * discount;
                 var make_discount = discount;
                 var make_vat = (set_sub_total / 100) * vat;
@@ -282,6 +312,7 @@
                 net_total = (set_sub_total - make_discount) + make_vat;
                 $('#subtotal').val(set_sub_total);
                 $('#netTotal').val(net_total.toFixed(2));
+                $('#total_qty').val(set_qty_total.toFixed(2));
                 // $('#due')
             }
             // discount calaulation js

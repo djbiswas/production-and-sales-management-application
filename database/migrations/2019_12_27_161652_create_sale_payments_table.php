@@ -15,6 +15,7 @@ class CreateSalePaymentsTable extends Migration
     {
         Schema::create('sale_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('store');
             $table->string('invoice');
             $table->string('date');
             $table->unsignedBigInteger('sale_id');

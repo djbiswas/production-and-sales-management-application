@@ -25,7 +25,7 @@ class ProductModelController extends Controller
 
     public function index()
     {
-       $productModels = ProductModel::where('category_id',1)->get();
+       $productModels = ProductModel::where('store',session()->get('template'))->where('category_id',1)->get();
         return view('products.index',compact('productModels'));
     }
 
@@ -50,9 +50,11 @@ class ProductModelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $this->validate($request, [
+
             'category_id' => 'sometimes',
             'product_type_id' => 'sometimes',
             'product_model_name' => 'required',
@@ -68,6 +70,7 @@ class ProductModelController extends Controller
 
         $productModel = New ProductModel();
         $productModel->category_id = 1;
+        $productModel->store = session()->get('template');
         $productModel->product_type_id = $request->product_type_id;
         $productModel->product_model_name = $request->product_model_name;
         $productModel->unitPrice = $request->unitPrice;
@@ -133,7 +136,6 @@ class ProductModelController extends Controller
             'tax_category_id' => 'sometimes',
             'stock_unit_id' => 'sometimes',
             'model_description' => 'sometimes'
-
         ]);
 
         $productModel = ProductModel::find($productModel->id);

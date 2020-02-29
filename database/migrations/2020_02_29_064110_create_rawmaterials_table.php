@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomersTable extends Migration
+class CreateRawmaterialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('rawmaterials', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('store');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('address');
-            $table->decimal('buy',25,2)->default('0');
-            $table->decimal('pay',25,2)->default('0');
-            $table->decimal('due',25,2)->default('0');
+            $table->decimal('quantity');
+            $table->unsignedBigInteger('stock_unit_id')->nullable();
+            $table->foreign('stock_unit_id')->references('id')
+                ->on('stock_units')->onUpdate('cascade')->onDelete('cascade');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('rawmaterials');
     }
 }
