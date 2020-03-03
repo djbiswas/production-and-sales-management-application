@@ -1,8 +1,10 @@
 <tr>
     <td><b class="si_number">1</b></td>
+    @if(session()->get('template') == 'Stone')
     <td>
         {{Form::text('track_number[]', null, ['class' => 'form-control form-control-sm', 'placeholder' => 'Truck Number', 'required' ]) }}
     </td>
+    @endif
     <td>
         {{Form::select('product_model_id[]', $products, null, ['class' => 'select2_op form-control product_model_id', 'placeholder' => 'Pick a Product...', 'required']) }}
         @if ($errors->has('product_model_id'))

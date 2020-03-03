@@ -50,6 +50,8 @@
                     </li>
                 </ul>
 
+                @if(session()->get('template') == 'Stone')
+
                 {{-- Purchases submenu--}}
                 <a href="#purchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#purchasesSubmenu" >Purchases ({{ session()->get('template') }})</a>
                 <ul class="{{ Request::path() === 'materialPurchases' || Request::path() === 'materialPurchases/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="purchasesSubmenu">
@@ -60,9 +62,33 @@
                         <a href="/materialPurchases/create">New Purchase</a>
                     </li>
                 </ul>
+
+                {{-- LC list submenu --}}
+
+                <a href="#lcSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#lcSubmenu" >LC list </a>
+                <ul class="{{ Request::path() === 'lcs' || Request::path() === 'lcs/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="lcSubmenu">
+                    <li>
+                        <a href="/lcs">Lc List</a>
+                    </li>
+                    <li>
+                        <a href="/lcs/create">Add New Lc</a>
+                    </li>
+                </ul>
+
+                {{-- Currency Convert submenu --}}
+                <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#currencySubmenu" >Currency Convert</a>
+                <ul class="{{ Request::path() === 'currencies' || Request::path() === 'currencies/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="currencySubmenu">
+                    <li>
+                        <a href="/currencies">List Of Currencies</a>
+                    </li>
+                    <li>
+                        <a href="/currencies/create">Add New Currency</a>
+                    </li>
+                </ul>
+
+                @endif
+
                 @if(session()->get('template') == 'Tiles')
-
-
 
                     {{-- Product Types submenu--}}
 
@@ -76,7 +102,29 @@
                         </li>
                     </ul>
 
+                    {{-- Raw Material Purchase submenu--}}
 
+                    <a href="#rawpurchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#rawpurchasesSubmenu" >Raw Purchases</a>
+                    <ul class="{{ Request::path() === 'rawpurchases' || Request::path() === 'rawpurchases/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="rawpurchasesSubmenu">
+                        <li>
+                            <a href="/rawpurchases">Raw Purchases List</a>
+                        </li>
+                        <li>
+                            <a href="/rawpurchases/create">New Raw Purchases</a>
+                        </li>
+                    </ul>
+
+                    {{-- Tiles Manufature --}}
+
+                    <a href="#manufacturersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#manufacturersSubmenu" >Tiles Manufacturer</a>
+                    <ul class="{{ Request::path() === 'manufacturers' || Request::path() === 'manufacturers/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="manufacturersSubmenu">
+                        <li>
+                            <a href="/manufacturers">Tiles Manufacturer</a>
+                        </li>
+                        <li>
+                            <a href="/manufacturers/create">New Tiles Manufacturer</a>
+                        </li>
+                    </ul>
 
                 {{-- Product Types submenu--}}
 
@@ -124,29 +172,6 @@
                     </li>
                 </ul>
 
-
-                {{-- LC list submenu --}}
-
-                <a href="#lcSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#lcSubmenu" >LC list </a>
-                <ul class="{{ Request::path() === 'lcs' || Request::path() === 'lcs/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="lcSubmenu">
-                    <li>
-                        <a href="/lcs">Lc List</a>
-                    </li>
-                    <li>
-                        <a href="/lcs/create">Add New Lc</a>
-                    </li>
-                </ul>
-
-    {{-- Currency Convert submenu --}}
-                <a href="#currencySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-target="#currencySubmenu" >Currency Convert</a>
-                <ul class="{{ Request::path() === 'currencies' || Request::path() === 'currencies/create' ? 'show ' : ''}}collapse list-unstyled" data-parent="#accordionExample" id="currencySubmenu">
-                    <li>
-                        <a href="/currencies">List Of Currencies</a>
-                    </li>
-                    <li>
-                        <a href="/currencies/create">Add New Currency</a>
-                    </li>
-                </ul>
 
 
                 {{-- Sales submenu --}}
@@ -209,7 +234,11 @@
                         <a href="/sales_report">Sales Report</a>
                     </li>
                     <li>
+                        @if(session()->get('template') == 'Stone')
                         <a href="/purchases_report">Purchase</a>
+                        @else
+                            <a href="/material_purchases_report">Material Purchase</a>
+                        @endif
                     </li>
                     <li>
                         <a href="/stock_report">Stock Report</a>
@@ -234,7 +263,11 @@
                 {{--                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Log Out</a>--}}
             </li>
             <li>
-                <a href="/tiles" class="article">Switch to Tiles</a>
+                @if(session()->get('template') == 'Stone')
+                    <a href="/admin/tiles" class="article">Switch to Tiles </a>
+                @else
+                    <a href="/admin/stone" class="article">Switch to Stone </a>
+                @endif
             </li>
         </ul>
     </nav>

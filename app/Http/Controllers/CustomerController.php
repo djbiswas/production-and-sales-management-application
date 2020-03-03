@@ -22,7 +22,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        $customers = Customer::get();
+        $customers = Customer::where('store', session()->get('template'))->get();
         return view('customers.index', compact('customers'));
     }
 
@@ -56,6 +56,7 @@ class CustomerController extends Controller
         $customer->phone = $request->phone;
         $customer->email = $request->email;
         $customer->address = $request->address;
+        $customer->store = session()->get('template');
 
         $customer->save();
 
@@ -103,12 +104,11 @@ class CustomerController extends Controller
             'address' => 'sometimes'
         ]);
 
-        $customer_data = Customer::find($customer->id);
-        $customer_data->name = $request->name;
-        $customer_data->phone = $request->phone;
-        $customer_data->email = $request->email;
-        $customer_data->address = $request->address;
-
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->address = $request->address;
+        $customer->store = session()->get('template');
         $customer->save();
 
         flash('Customers Update Success.')->success();

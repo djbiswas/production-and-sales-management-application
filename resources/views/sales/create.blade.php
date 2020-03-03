@@ -70,7 +70,9 @@
                         <table style="width: 100%;">
                             <thead>
                                 <th style="width: 2%">#</th>
+                                @if(session()->get('template') == 'Stone')
                                 <th style="width: 16%">Truck Number </th>
+                                @endif
                                 <th style="width: 16%">Product Name</th>
                                 <th style="width: 16%">Available Stock</th>
                                 <th style="width: 16%">Unit Price</th>

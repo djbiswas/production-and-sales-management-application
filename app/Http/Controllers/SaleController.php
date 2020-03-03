@@ -28,7 +28,7 @@ class SaleController extends Controller
     public function index()
     {
         $template = Session::get('template');
-        $sales = Sale::with('customer')->get();
+        $sales = Sale::where('store',session()->get('template'))->with('customer')->get();
         return view('sales.index', compact('sales','template'));
     }
 
@@ -44,7 +44,7 @@ class SaleController extends Controller
         $inv = 'SST'.$today . $rand;
 
         $template = Session::get('template');
-        $customers = customer::pluck('name','id');
+        $customers = customer::where('store',session()->get('template'))->pluck('name','id');
 
         return view('sales.create',compact('customers','inv','template'));
     }
@@ -97,6 +97,7 @@ class SaleController extends Controller
         $sale->shipping_address = $request->shipping_address;
         $sale->customer_id = $request->customer_id;
         $sale->user_id = Auth::user()->id;
+        $sale->store = session()->get('template');
         $sale->date = $request->date;
         $sale->subtotal = $request->subtotal;
         $sale->total_qty = $request->total_qty;
@@ -281,7 +282,7 @@ class SaleController extends Controller
 
     public function addNewRow()
     {
-        $products = ProductModel::pluck('product_model_name','id');
+        $products = ProductModel::where('store',session()->get('template'))->pluck('product_model_name','id');
         return view('sales.addNewRow',compact('products'));
     }
 

@@ -44,11 +44,27 @@ class ProductTypeController extends Controller
     {
         $this->validate($request, [
             'product_type_name' => 'required',
+            'select_sand' => 'required',
+            'white_sand' => 'required',
+            'red_color' => 'required',
+            'yellow_color' => 'required',
+            'black_color' => 'required',
+            'chemical_color' => 'required',
+            'cement' => 'required',
+            'stone' => 'required',
             'product_type_notes' => 'sometimes'
         ]);
 
         $productType = new ProductType();
         $productType->product_type_name = $request->product_type_name;
+        $productType->select_sand = $request->select_sand;
+        $productType->white_sand = $request->white_sand;
+        $productType->red_color = $request->red_color;
+        $productType->yellow_color = $request->yellow_color;
+        $productType->black_color = $request->black_color;
+        $productType->chemical_color = $request->chemical_color;
+        $productType->cement = $request->cement;
+        $productType->stone = $request->stone;
         $productType->product_type_notes = $request->product_type_notes;
 
         $productType->save();
@@ -91,12 +107,28 @@ class ProductTypeController extends Controller
     {
         $this->validate($request, [
             'product_type_name' => 'required',
+            'select_sand' => 'required',
+            'white_sand' => 'required',
+            'red_color' => 'required',
+            'yellow_color' => 'required',
+            'black_color' => 'required',
+            'chemical_color' => 'required',
+            'cement' => 'required',
+            'stone' => 'required',
             'product_type_notes' => 'sometimes'
 
         ]);
 
         $productType = ProductType::find($productType->id);
         $productType->product_type_name = $request->product_type_name;
+        $productType->select_sand = $request->select_sand;
+        $productType->white_sand = $request->white_sand;
+        $productType->red_color = $request->red_color;
+        $productType->yellow_color = $request->yellow_color;
+        $productType->black_color = $request->black_color;
+        $productType->chemical_color = $request->chemical_color;
+        $productType->cement = $request->cement;
+        $productType->stone = $request->stone;
         $productType->product_type_notes = $request->product_type_notes;
 
         $productType->save();

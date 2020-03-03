@@ -50,7 +50,9 @@
                             <tr>
                                 <th>#</th>
                                 <th class="text-left" style="width: 55%;">PRODUCT NAME</th>
+                                @if(session()->get('template') == 'Stone')
                                 <th class="text-left" style="">TRUCK NUMBER</th>
+                                @endif
                                 <th class="text-right">UNIT PRICE</th>
                                 <th class="text-right">QUANTITY</th>
                                 <th class="text-right">TOTAL PRICE</th>
@@ -62,7 +64,9 @@
                             <tr>
                                 <td class="no">{{++$i}}</td>
                                 <td class="text-left">{{$sale_item->product_name}}</td>
+                                @if(session()->get('template') == 'Stone')
                                 <td class="text-left truck">{{$sale_item->track_number}}</td>
+                                @endif
                                 <td class="unit">{{$sale_item->price}}</td>
                                 <td class="qty">{{$sale_item->orderQuantity}}</td>
                                 <td class="total">{{$sale_item->totalPrice}}</td>
@@ -74,32 +78,56 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                @if(session()->get('template') == 'Stone')
                                 <td colspan="3"></td>
+                                @else
+                                    <td colspan="2"></td>
+                                @endif
                                 <td colspan="2">SUBTOTAL</td>
                                 <td>{{$sale->subtotal}}</td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td>
+                                @if(session()->get('template') == 'Stone')
+                                    <td colspan="3"></td>
+                                @else
+                                    <td colspan="2"></td>
+                                @endif
                                 <td colspan="2">TAX {{$sale->vat}} %</td>
                                 <td>{{($sale->subtotal / 100)*$sale->vat}}</td>
                             </tr>
                             <tr class="">
-                                <td colspan="3"></td>
+                                @if(session()->get('template') == 'Stone')
+                                    <td colspan="3"></td>
+                                @else
+                                    <td colspan="2"></td>
+                                @endif
                                 <td colspan="2">DISCOUNT {{$sale->discount}} %</td>
                                 <td><span class="text-danger">(-{{($sale->subtotal / 100)*$sale->discount}})</span></td>
                             </tr>
                             <tr class="gtotal">
-                                <td colspan="3"></td>
+                                @if(session()->get('template') == 'Stone')
+                                    <td colspan="3"></td>
+                                @else
+                                    <td colspan="2"></td>
+                                @endif
                                 <td colspan="2">GRAND TOTAL</td>
                                 <td>{{$sale->netTotal}}</td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td>
+                                @if(session()->get('template') == 'Stone')
+                                    <td colspan="3"></td>
+                                @else
+                                    <td colspan="2"></td>
+                                @endif
                                 <td colspan="2">PAID</td>
                                 <td>{{$sale->paid}}</td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td>
+                                @if(session()->get('template') == 'Stone')
+                                    <td colspan="3"></td>
+                                @else
+                                    <td colspan="2"></td>
+                                @endif
                                 <td colspan="2">DUE</td>
                                 <td>{{$sale->due}}</td>
                             </tr>

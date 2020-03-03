@@ -14,7 +14,7 @@
                 <div class="">
                     {{ Form::label('name', 'Material Name')}}
                     <div class="input-group mb-3">
-                        {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Material Name', 'required'  ))}}
+                        {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Material Name', 'required', 'readonly'  ))}}
                     </div>
                 </div>
 

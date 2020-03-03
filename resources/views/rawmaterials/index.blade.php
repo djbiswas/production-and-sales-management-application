@@ -8,7 +8,6 @@
             <h2>All Raw Materials</h2>
         </div>
         <div class="col text-right">
-
             <a href="{{route('rawmaterials.create')}}" class="btn btn-primary">
                 <i class="mdi mdi-account-edit"></i> New Raw Materials</a>
         </div>
@@ -21,6 +20,7 @@
                 <th>No</th>
                 <th>Raw Material Name</th>
                 <th>Quantity</th>
+                <th>Units</th>
                 <th>Note</th>
                 <th>Action</th>
             </tr>
@@ -29,12 +29,11 @@
             <tbody>
             @foreach ($rawmaterials as $rawmaterial)
                 <tr>
-
                     <th>{{$rawmaterial->id}} </th>
                     <td>{{$rawmaterial->name}}</td>
-                    <td>{{$rawmaterial->stock_unit_id}}</td>
+                    <td>{{$rawmaterial->quantity}}</td>
+                    <td>{{$rawmaterial->stockUnits->unit_name}}</td>
                     <td>{{$rawmaterial->note}}</td>
-
 
                     <td class="has-text-right">
                         {{-- <a class="btn btn-outline-success" href="{{route('purchase.show', $purchase->id)}}">View </a> --}}

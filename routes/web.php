@@ -24,6 +24,11 @@ Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/suppliers', 'SupplierController');
     Route::resource('/productModels', 'ProductModelController');
     Route::resource('/rawmaterials', 'RawmaterialController');
+    Route::resource('/rawpurchases', 'RawpurchaseController');
+
+    Route::resource('/manufacturers', 'ManufacturerController');
+    Route::post('/class_data', 'ManufacturerController@class_data');
+
     Route::resource('/materialPurchases', 'MaterialPurchaseController');
 
     Route::resource('/customers', 'CustomerController');
@@ -46,6 +51,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('/purchases_report', 'Report@purchases_report');
     Route::get('get_purchases_data', 'Report@get_purchases_data')->name('get_purchases_data');
+
+    Route::get('/material_purchases_report', 'Report@material_purchases_report');
+    Route::get('get_material_purchases_data', 'Report@get_material_purchases_data')->name('get_material_purchases_data');
 
     Route::get('/stock_report', 'Report@stock_report');
     Route::get('get_stock_data', 'Report@get_stock_data')->name('get_stock_data');

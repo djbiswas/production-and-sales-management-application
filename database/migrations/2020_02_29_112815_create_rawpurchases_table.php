@@ -16,6 +16,8 @@ class CreateRawpurchasesTable extends Migration
         Schema::create('rawpurchases', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->date('date');
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')
                 ->on('users')->onUpdate('cascade')->onDelete('cascade');
@@ -30,7 +32,9 @@ class CreateRawpurchasesTable extends Migration
                 ->on('suppliers')->onUpdate('cascade')->onDelete('cascade');
 
             $table->decimal('quantity', 25, 4);
+            $table->decimal('unitprice', 25, 4);
             $table->decimal('price', 25, 4);
+            $table->decimal('cost', 25, 4);
 
             $table->timestamps();
         });

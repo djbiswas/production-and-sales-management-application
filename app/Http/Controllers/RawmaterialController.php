@@ -15,7 +15,7 @@ class RawmaterialController extends Controller
      */
     public function index()
     {
-        $rawmaterials = Rawmaterial::get();
+        $rawmaterials = Rawmaterial::with('stockUnits')->get();
         return view('rawmaterials.index',compact('rawmaterials'));
     }
 
@@ -51,6 +51,7 @@ class RawmaterialController extends Controller
         $rawmaterial = new Rawmaterial();
         $rawmaterial->name = $request->name;
         $rawmaterial->stock_unit_id = $request->stock_unit_id;
+        $rawmaterial->quantity = $request->quantity;
         $rawmaterial->note = $request->note;
         $rawmaterial->save();
 
@@ -103,6 +104,7 @@ class RawmaterialController extends Controller
 
         $rawmaterial->name = $request->name;
         $rawmaterial->stock_unit_id = $request->stock_unit_id;
+        $rawmaterial->quantity = $request->quantity;
         $rawmaterial->note = $request->note;
         $rawmaterial->save();
 

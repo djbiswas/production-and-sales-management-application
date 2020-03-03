@@ -17,9 +17,11 @@ class CreateRawmaterialsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->decimal('quantity');
+
             $table->unsignedBigInteger('stock_unit_id')->nullable();
             $table->foreign('stock_unit_id')->references('id')
                 ->on('stock_units')->onUpdate('cascade')->onDelete('cascade');
+
             $table->text('note')->nullable();
             $table->timestamps();
         });
